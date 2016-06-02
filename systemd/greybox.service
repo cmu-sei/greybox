@@ -1,0 +1,15 @@
+[Unit]
+Description=CORE Topology Starter
+ConditionPathExists=/etc/greybox/map.imn
+After=core-daemon.service
+# NOTE: "Requires", not just "Wants":
+Requires=core-daemon.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/sh -c "core-gui --batch /etc/greybox/map.imn | grep -o 'Session id is [[:digit:]]*' | cut -d' ' -f1-3 --complement > /run/greybox.sid"
+ExecStop=/usr/bin/sh -c "core-gui -c $(< /run/greybox.sid); rm -f /run/greybox.sid"
+
+[Install]
+WantedBy=multi-user.target
