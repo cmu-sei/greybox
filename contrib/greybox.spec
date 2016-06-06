@@ -1,5 +1,5 @@
 Name: greybox
-Version: 0.0.1
+Version: 0.0.95
 Release: 1%{?dist}
 Summary: GreyBox: Single-Host Internet Simulator
 License: BSD
@@ -54,5 +54,5 @@ NAME=%{name} BUILDROOT=%{buildroot} UNITDIR=%{_unitdir} \
 %{_datadir}/%{name}/
 
 %changelog
-* Fri Jun 03 2016 Gabriel Somlo <glsomlo at cert.org> 0.0.1-1
+* Fri Jun 03 2016 Gabriel Somlo <glsomlo at cert.org> 0.1.0-1
 - initial fedora package
