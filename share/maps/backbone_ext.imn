@@ -10022,7 +10022,7 @@ node n301 {
 node n410 {
     type rj45
     network-config {
-	hostname eth1
+	hostname ethX
 	!
     }
     canvas c1
