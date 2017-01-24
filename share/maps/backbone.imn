@@ -9482,6 +9482,7 @@ node n300 {
     interface-peer {e67 n167}
     interface-peer {e68 n168}
     interface-peer {e69 n169}
+    custom-image /usr/share/greybox/clipart/invisible.gif
 }
 
 link l300 {
