@@ -3289,7 +3289,7 @@ node n129 {
 	interface eth6
 	 ip address 94.60.0.42/30
 	!
-	interface eth7
+	!interface eth7
 	! ip address 104.131.66.1/24
 	!
     }
@@ -3344,7 +3344,7 @@ node n129 {
 	 description sky-lon-nyc-level3 37ms
 	 ip address 94.60.0.42/30
 	!
-	interface eth7
+	!interface eth7
 	! description level3-nyc-branch 0ms
 	! ip address 104.131.66.1/24
 	!
