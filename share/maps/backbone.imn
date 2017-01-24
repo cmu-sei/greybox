@@ -9923,7 +9923,7 @@ node n301 {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
 	config {
-	dirs=('/var/log/nginx', '/var/lib/postfix', '/var/spool/postfix', '/var/spool/mail',)
+	dirs=('/var/log/nginx', '/var/named/data', '/var/lib/postfix', '/var/spool/postfix', '/var/spool/mail',)
 	files=('TopGenBoot.sh',)
 	cmdup=('sh TopGenBoot.sh start',)
 	cmddown=('sh TopGenBoot.sh stop',)
