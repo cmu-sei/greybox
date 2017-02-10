@@ -56,7 +56,7 @@ node n101 {
     interface-peer {eth2 n104}
     interface-peer {eth3 n102}
     interface-peer {eth4 n161}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -158,7 +158,7 @@ node n102 {
     interface-peer {eth2 n104}
     interface-peer {eth3 n101}
     interface-peer {eth4 n162}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -269,7 +269,7 @@ node n103 {
     interface-peer {eth4 n142}
     interface-peer {eth5 n163}
     interface-peer {eth6 n127}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -383,7 +383,7 @@ node n104 {
     interface-peer {eth2 n101}
     interface-peer {eth3 n103}
     interface-peer {eth4 n164}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -486,7 +486,7 @@ node n105 {
     interface-peer {eth2 n109}
     interface-peer {eth3 n108}
     interface-peer {eth4 n141}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -596,7 +596,7 @@ node n106 {
     interface-peer {eth2 n107}
     interface-peer {eth3 n142}
     interface-peer {eth4 n112}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -714,7 +714,7 @@ node n107 {
     interface-peer {eth4 n109}
     interface-peer {eth5 n143}
     interface-peer {eth6 n124}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -851,7 +851,7 @@ node n108 {
     interface-peer {eth4 n105}
     interface-peer {eth5 n144}
     interface-peer {eth6 n153}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -981,7 +981,7 @@ node n109 {
     interface-peer {eth3 n107}
     interface-peer {eth4 n145}
     interface-peer {eth5 n133}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -1102,7 +1102,7 @@ node n110 {
     interface-peer {eth4 n113}
     interface-peer {eth5 n114}
     interface-peer {eth6 n125}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -1247,7 +1247,7 @@ node n111 {
     interface-peer {eth4 n126}
     interface-peer {eth5 n11}
     interface-peer {eth6 n164}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -1384,7 +1384,7 @@ node n112 {
     interface-peer {eth4 n127}
     interface-peer {eth5 n122}
     interface-peer {eth6 n106}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -1521,7 +1521,7 @@ node n113 {
     interface-peer {eth4 n110}
     interface-peer {eth5 n112}
     interface-peer {eth6 n128}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -1663,7 +1663,7 @@ node n114 {
     interface-peer {eth3 n110}
     interface-peer {eth4 n163}
     interface-peer {eth5 n129}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -1792,7 +1792,7 @@ node n115 {
     interface-peer {eth3 n110}
     interface-peer {eth4 n21}
     interface-peer {eth5 n130}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -1916,7 +1916,7 @@ node n116 {
     interface-peer {eth2 n119}
     interface-peer {eth3 n120}
     interface-peer {eth4 n122}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -2024,7 +2024,7 @@ node n117 {
     interface-peer {eth2 n118}
     interface-peer {eth3 n120}
     interface-peer {eth4 n123}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -2131,7 +2131,7 @@ node n118 {
     interface-peer {eth2 n119}
     interface-peer {eth3 n120}
     interface-peer {eth4 n124}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -2239,7 +2239,7 @@ node n119 {
     interface-peer {eth2 n116}
     interface-peer {eth3 n120}
     interface-peer {eth4 n121}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -2347,7 +2347,7 @@ node n120 {
     interface-peer {eth2 n117}
     interface-peer {eth3 n118}
     interface-peer {eth4 n119}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -2445,7 +2445,7 @@ node n121 {
     interface-peer {eth1 n129}
     interface-peer {eth2 n119}
     interface-peer {eth3 n410}
-    services {zebra BGP vtysh IPForward DHCP UserDefined}
+    services {zebra BGP IPForward DHCP UserDefined}
     custom-config {
 	custom-config-id service:DHCP
 	custom-command DHCP
@@ -2553,7 +2553,7 @@ node n122 {
     interface-peer {eth0 n300}
     interface-peer {eth1 n112}
     interface-peer {eth2 n116}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -2624,7 +2624,7 @@ node n123 {
     interface-peer {eth0 n300}
     interface-peer {eth1 n140}
     interface-peer {eth2 n117}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -2699,7 +2699,7 @@ node n124 {
     interface-peer {eth1 n107}
     interface-peer {eth2 n118}
     interface-peer {eth3 n420}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -2793,7 +2793,7 @@ node n125 {
     interface-peer {eth4 n128}
     interface-peer {eth5 n129}
     interface-peer {eth6 n110}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -2933,7 +2933,7 @@ node n126 {
     interface-peer {eth3 n128}
     interface-peer {eth4 n31}
     interface-peer {eth5 n111}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -3062,7 +3062,7 @@ node n127 {
     interface-peer {eth3 n128}
     interface-peer {eth4 n103}
     interface-peer {eth5 n112}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -3193,7 +3193,7 @@ node n128 {
     interface-peer {eth4 n125}
     interface-peer {eth5 n127}
     interface-peer {eth6 n113}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -3336,7 +3336,7 @@ node n129 {
     interface-peer {eth4 n114}
     interface-peer {eth5 n121}
     interface-peer {eth6 n143}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -3466,7 +3466,7 @@ node n130 {
     interface-peer {eth2 n126}
     interface-peer {eth3 n125}
     interface-peer {eth4 n115}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -3592,7 +3592,7 @@ node n131 {
     interface-peer {eth4 n132}
     interface-peer {eth5 n136}
     interface-peer {eth6 n146}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -3728,7 +3728,7 @@ node n132 {
     interface-peer {eth4 n135}
     interface-peer {eth5 n147}
     interface-peer {eth6 n159}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -3844,7 +3844,7 @@ node n133 {
     interface-peer {eth1 n131}
     interface-peer {eth2 n148}
     interface-peer {eth3 n109}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -3944,7 +3944,7 @@ node n134 {
     interface-peer {eth3 n159}
     interface-peer {eth4 n149}
     interface-peer {eth5 n156}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -4053,7 +4053,7 @@ node n135 {
     interface-peer {eth2 n136}
     interface-peer {eth3 n132}
     interface-peer {eth4 n150}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -4165,7 +4165,7 @@ node n136 {
     interface-peer {eth3 n131}
     interface-peer {eth4 n151}
     interface-peer {eth5 n22}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -4286,7 +4286,7 @@ node n137 {
     interface-peer {eth3 n138}
     interface-peer {eth4 n157}
     interface-peer {eth5 n147}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -4397,7 +4397,7 @@ node n138 {
     interface-peer {eth2 n139}
     interface-peer {eth3 n137}
     interface-peer {eth4 n158}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -4506,7 +4506,7 @@ node n139 {
     interface-peer {eth3 n140}
     interface-peer {eth4 n159}
     interface-peer {eth5 n167}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -4625,7 +4625,7 @@ node n140 {
     interface-peer {eth4 n160}
     interface-peer {eth5 n123}
     interface-peer {eth6 n151}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -4740,7 +4740,7 @@ node n141 {
     interface-peer {eth2 n145}
     interface-peer {eth3 n144}
     interface-peer {eth4 n105}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -4854,7 +4854,7 @@ node n142 {
     interface-peer {eth3 n166}
     interface-peer {eth4 n106}
     interface-peer {eth5 n103}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -4977,7 +4977,7 @@ node n143 {
     interface-peer {eth4 n145}
     interface-peer {eth5 n107}
     interface-peer {eth6 n129}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -5108,7 +5108,7 @@ node n144 {
     interface-peer {eth3 n143}
     interface-peer {eth4 n141}
     interface-peer {eth5 n108}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -5230,7 +5230,7 @@ node n145 {
     interface-peer {eth2 n144}
     interface-peer {eth3 n143}
     interface-peer {eth4 n109}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -5346,7 +5346,7 @@ node n146 {
     interface-peer {eth4 n147}
     interface-peer {eth5 n151}
     interface-peer {eth6 n131}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -5483,7 +5483,7 @@ node n147 {
     interface-peer {eth4 n150}
     interface-peer {eth5 n137}
     interface-peer {eth6 n132}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -5596,7 +5596,7 @@ node n148 {
     interface-peer {eth0 n300}
     interface-peer {eth1 n146}
     interface-peer {eth2 n133}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -5687,7 +5687,7 @@ node n149 {
     interface-peer {eth2 n146}
     interface-peer {eth3 n134}
     interface-peer {eth4 n168}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -5791,7 +5791,7 @@ node n150 {
     interface-peer {eth2 n151}
     interface-peer {eth3 n147}
     interface-peer {eth4 n135}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -5907,7 +5907,7 @@ node n151 {
     interface-peer {eth4 n136}
     interface-peer {eth5 n140}
     interface-peer {eth6 n32}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -6033,7 +6033,7 @@ node n152 {
     interface-peer {eth3 n155}
     interface-peer {eth4 n165}
     interface-peer {eth5 n163}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -6147,7 +6147,7 @@ node n153 {
     interface-peer {eth4 n154}
     interface-peer {eth5 n108}
     interface-peer {eth6 n166}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -6268,7 +6268,7 @@ node n154 {
     interface-peer {eth2 n155}
     interface-peer {eth3 n153}
     interface-peer {eth4 n167}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -6375,7 +6375,7 @@ node n155 {
     interface-peer {eth3 n153}
     interface-peer {eth4 n152}
     interface-peer {eth5 n168}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -6486,7 +6486,7 @@ node n156 {
     interface-peer {eth2 n153}
     interface-peer {eth3 n169}
     interface-peer {eth4 n134}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -6588,7 +6588,7 @@ node n157 {
     interface-peer {eth2 n160}
     interface-peer {eth3 n158}
     interface-peer {eth4 n137}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -6693,7 +6693,7 @@ node n158 {
     interface-peer {eth2 n159}
     interface-peer {eth3 n157}
     interface-peer {eth4 n138}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -6805,7 +6805,7 @@ node n159 {
     interface-peer {eth4 n132}
     interface-peer {eth5 n139}
     interface-peer {eth6 n134}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -6924,7 +6924,7 @@ node n160 {
     interface-peer {eth3 n159}
     interface-peer {eth4 n140}
     interface-peer {eth5 n12}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -7036,7 +7036,7 @@ node n161 {
     interface-peer {eth2 n164}
     interface-peer {eth3 n162}
     interface-peer {eth4 n101}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -7138,7 +7138,7 @@ node n162 {
     interface-peer {eth2 n164}
     interface-peer {eth3 n161}
     interface-peer {eth4 n102}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -7250,7 +7250,7 @@ node n163 {
     interface-peer {eth4 n103}
     interface-peer {eth5 n152}
     interface-peer {eth6 n114}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -7367,7 +7367,7 @@ node n164 {
     interface-peer {eth3 n163}
     interface-peer {eth4 n104}
     interface-peer {eth5 n111}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -7474,7 +7474,7 @@ node n165 {
     interface-peer {eth2 n167}
     interface-peer {eth3 n168}
     interface-peer {eth4 n152}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -7583,7 +7583,7 @@ node n166 {
     interface-peer {eth4 n167}
     interface-peer {eth5 n153}
     interface-peer {eth6 n142}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -7708,7 +7708,7 @@ node n167 {
     interface-peer {eth3 n166}
     interface-peer {eth4 n154}
     interface-peer {eth5 n139}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -7825,7 +7825,7 @@ node n168 {
     interface-peer {eth4 n165}
     interface-peer {eth5 n155}
     interface-peer {eth6 n149}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -7938,7 +7938,7 @@ node n169 {
     interface-peer {eth1 n168}
     interface-peer {eth2 n166}
     interface-peer {eth3 n156}
-    services {zebra BGP vtysh IPForward UserDefined}
+    services {zebra BGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined

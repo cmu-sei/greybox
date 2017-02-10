@@ -8,7 +8,7 @@ Source0: http://download.cert.org/%{name}-%{version}.tar.xz
 Requires(post): systemd-units
 Requires(preun): systemd-units
 Requires(postun): systemd-units
-Requires: core-daemon, core-gui
+Requires: core-daemon >= 5.0, core-gui
 Requires: quagga
 Requires: topgen >= 0.0.95
 Requires: keepalived, dhcp-server
