@@ -10815,7 +10815,7 @@ link l410 {
 
 node n420 {
     type router
-    model PC
+    model host
     network-config {
 	hostname CharlieUser1
 	!
