@@ -1,5 +1,5 @@
 Name: greybox
-Version: 0.0.95
+Version: 0.0.96
 Release: 1%{?dist}
 Summary: GreyBox: Single-Host Internet Simulator
 License: BSD
