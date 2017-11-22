@@ -1,6 +1,6 @@
 # GreyBox Overview #
 GreyBox is a single-host Internet simulator for offline exercise and
-training networks. It allows a single host (pyhsical or VM) to provide
+training networks. It allows a single host (physical or VM) to provide
 the illusion of connectivity to the real Internet: a realistic BGP
 backbone topology with point-to-point link delays based on physical
 distance between the routers' real-world locations, combined with
