@@ -3,7 +3,7 @@ Version: 0.0.96
 Release: 1%{?dist}
 Summary: GreyBox: Single-Host Internet Simulator
 License: BSD
-Url: http://cert.org
+Url: https://github.com/cmu-sei/greybox
 Source0: http://download.cert.org/%{name}-%{version}.tar.xz
 Requires(post): systemd-units
 Requires(preun): systemd-units
