@@ -10,13 +10,13 @@
 /bin/echo "SYSCONFDIR   =${SYSCONFDIR:=/etc};"
 /bin/echo "DATADIR      =${DATADIR:=/usr/share};"
 
-/bin/install -d $BUILDROOT/$UNITDIR
-/bin/install -m 0644 -t $BUILDROOT/$UNITDIR systemd/*
+/usr/bin/install -d $BUILDROOT/$UNITDIR
+/usr/bin/install -m 0644 -t $BUILDROOT/$UNITDIR systemd/*
 
-/bin/install -m 0644 -D share/maps/backbone.imn \
-                        $BUILDROOT/$SYSCONFDIR/$NAME/map.imn
+/usr/bin/install -m 0644 -D share/maps/backbone.imn \
+                            $BUILDROOT/$SYSCONFDIR/$NAME/map.imn
 
 for i in clipart etc maps; do
-  /bin/install -d $BUILDROOT/$DATADIR/$NAME/$i
-  /bin/install -m 0644 -t $BUILDROOT/$DATADIR/$NAME/$i share/$i/*
+  /usr/bin/install -d $BUILDROOT/$DATADIR/$NAME/$i
+  /usr/bin/install -m 0644 -t $BUILDROOT/$DATADIR/$NAME/$i share/$i/*
 done
