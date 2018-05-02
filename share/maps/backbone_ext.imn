@@ -10747,7 +10747,7 @@ node n301 {
     type router
     model host
     network-config {
-	hostname TopGen
+	hostname topgen.info
 	!
 	interface eth0
 	 ip address 10.255.255.10/24
