@@ -1,15 +1,18 @@
 [Unit]
 Description=CORE Topology Starter
 ConditionPathExists=/etc/greybox/map.imn
-After=core-daemon.service
-# NOTE: "Requires", not just "Wants":
 Requires=core-daemon.service
 
 [Service]
 Type=oneshot
 RemainAfterExit=yes
+# ensure core-daemon is listening (on 127.0.0.1:4038):
+# (FIXME: implement socket activation in core-daemon!)
+ExecStartPre=/usr/bin/sh -c "while [ -z $(lsof -Pi :4038 -sTCP:LISTEN -t) ]; do sleep 1; done"
 ExecStart=/usr/bin/sh -c "core-gui --batch /etc/greybox/map.imn | grep -o 'Session id is [[:digit:]]*' | cut -d' ' -f1-3 --complement > /run/greybox.sid"
-ExecStop=/usr/bin/sh -c "core-gui -c $(< /run/greybox.sid); rm -f /run/greybox.sid"
+ExecStop=/usr/bin/sh -c "core-gui -c $(< /run/greybox.sid); rm -f /run/greybox.sid; while (($(ifconfig -a -s | grep '^veth\|^b\.' | wc -l)>0)); do sleep 10; done"
+# NOTE: waiting for all "veth*" and "b.*" interfaces to go away is hacky;
+# However, it's allowing us to _restart_ the greybox service, for now...
 
 [Install]
 WantedBy=multi-user.target
