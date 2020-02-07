@@ -1,16 +1,16 @@
 Name: greybox
-Version: 0.0.96
+Version: 0.0.97
 Release: 1%{?dist}
 Summary: GreyBox: Single-Host Internet Simulator
 License: BSD
-Url: https://github.com/cmu-sei/greybox
-Source0: http://download.cert.org/%{name}-%{version}.tar.xz
+Url: https://github.com/cmu-sei/%{name}
+Source0: http://github.com/cmu-sei/%{name}/archive/master/%{name}-master.tar.xz
 Requires(post): systemd-units
 Requires(preun): systemd-units
 Requires(postun): systemd-units
-Requires: core-daemon >= 5.0, core-gui
+Requires: core-daemon >= 6.0, core-gui
 Requires: frr
-Requires: topgen >= 0.0.95
+Requires: topgen >= 0.0.97
 Requires: keepalived, dhcp-server
 Requires: iodine
 BuildRequires: systemd-units
@@ -24,7 +24,7 @@ HTTP, DNS, email, etc. The container topology is based on the CORE network
 simulator.
 
 %prep
-%setup -q
+%setup -q -n %{name}-master
 
 %build
 echo "nothing to build"
@@ -58,5 +58,5 @@ NAME=%{name} BUILDROOT=%{buildroot} UNITDIR=%{_unitdir} \
 %{_datadir}/%{name}/
 
 %changelog
-* Fri Jun 03 2016 Gabriel Somlo <glsomlo at cert.org> 0.1.0-1
+* Fri Feb 07 2020 Gabriel Somlo <glsomlo at cert.org> 0.0.97-1
 - initial fedora package
