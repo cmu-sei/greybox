@@ -50,6 +50,8 @@ NAME=%{name} BUILDROOT=%{buildroot} UNITDIR=%{_unitdir} \
 # /etc/greybox directory and config file(s):
 %dir %{_sysconfdir}/%{name}
 %config(noreplace) %{_sysconfdir}/%{name}/map.imn
+# (bash) shell settings:
+%{_sysconfdir}/profile.d/%{name}.sh
 # /usr/share/greybox data:
 %{_datadir}/%{name}/
 
