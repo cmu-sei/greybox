@@ -9,17 +9,18 @@ Requires(post): systemd-units
 Requires(preun): systemd-units
 Requires(postun): systemd-units
 Requires: core-daemon >= 5.0, core-gui
-Requires: quagga
+Requires: frr
 Requires: topgen >= 0.0.95
 Requires: keepalived, dhcp-server
 BuildRequires: systemd-units
 BuildArch: noarch
 
 %description
-GreyBox is a single-host internet simulator which uses containerized
-quagga instances to implement the routing backbone, and a containerized
-TopGen application server for HTTP, DNS, email, etc. The container
-topology is implemented using the CORE network simulator.
+GreyBox is a single-host internet simulator which uses containerized router
+instances (e.g., FRR or Quagga) to implement the backbone network routing
+infrastructure, and a containerized TopGen server for applications such as
+HTTP, DNS, email, etc. The container topology is based on the CORE network
+simulator.
 
 %prep
 %setup -q

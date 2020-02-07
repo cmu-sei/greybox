@@ -56,7 +56,7 @@ node n101 {
     interface-peer {eth2 n104}
     interface-peer {eth3 n102}
     interface-peer {eth4 n161}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -66,38 +66,39 @@ node n101 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.101/24
-	 exit
 	!
 	interface eth1
 	 description americatel-bog-for 27ms
 	 ip address 139.82.0.1/30
-	 exit
 	!
 	interface eth2
 	 description americatel-bog-lim 12ms
 	 ip address 139.82.0.14/30
-	 exit
 	!
 	interface eth3
 	 description americatel-bai-bog 7ms
 	 ip address 139.82.0.17/30
-	 exit
 	!
 	interface eth4
 	 description americatel-bog-terra 4ms
 	 ip address 139.82.0.25/30
-	 exit
 	!
 	!interface eth5
 	! description americatel-bog-branch 0ms
 	! ip address 190.7.109.1/24
-	! exit
 	!
 	router bgp 19180
 	 bgp router-id 139.82.0.1
@@ -110,27 +111,12 @@ node n101 {
 	 neighbor 139.82.0.18 remote-as 19180
 	 neighbor 139.82.0.18 next-hop-self
 	 neighbor 139.82.0.26 remote-as 40260
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
 	ip route 181.0.0.0/8 10.255.255.10
 	ip route 191.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -169,7 +155,7 @@ node n102 {
     interface-peer {eth2 n104}
     interface-peer {eth3 n101}
     interface-peer {eth4 n162}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -179,38 +165,39 @@ node n102 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.102/24
-	 exit
 	!
 	interface eth1
 	 description americatel-bai-for 34ms
 	 ip address 139.82.0.6/30
-	 exit
 	!
 	interface eth2
 	 description americatel-bai-lim 16ms
 	 ip address 139.82.0.9/30
-	 exit
 	!
 	interface eth3
 	 description americatel-bai-bog 7ms
 	 ip address 139.82.0.18/30
-	 exit
 	!
 	interface eth4
 	 description americatel-bai-terra 4ms
 	 ip address 139.82.0.29/30
-	 exit
 	!
 	!interface eth5
 	! description americatel-bai-branch 0ms
 	! ip address 200.49.193.1/24
-	! exit
 	!
 	router bgp 19180
 	 bgp router-id 139.82.0.6
@@ -224,27 +211,12 @@ node n102 {
 	 neighbor 139.82.0.17 next-hop-self
 	 neighbor 139.82.0.30 remote-as 40260
 	 !neighbor 200.49.193.4 remote-as 19183
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
 	ip route 181.0.0.0/8 10.255.255.10
 	ip route 191.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -291,7 +263,7 @@ node n103 {
     interface-peer {eth4 n142}
     interface-peer {eth5 n163}
     interface-peer {eth6 n127}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -301,48 +273,47 @@ node n103 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.103/24
-	 exit
 	!
 	interface eth1
 	 description americatel-bog-for 27ms
 	 ip address 139.82.0.2/30
-	 exit
 	!
 	interface eth2
 	 description americatel-bai-for 34ms
 	 ip address 139.82.0.5/30
-	 exit
 	!
 	interface eth3
 	 description americatel-for-lim 28ms
 	 ip address 139.82.0.21/30
-	 exit
 	!
 	interface eth4
 	 description americatel-for-lis-sky 37ms
 	 ip address 139.82.0.33/30
-	 exit
 	!
 	interface eth5
 	 description terra-for-americatel 4ms
 	 ip address 143.54.0.26/30
-	 exit
 	!
 	interface eth6
 	 description level3-mia-for-americatel 37ms
 	 ip address 24.111.0.58/30
-	 exit
 	!
 	!interface eth7
 	! description americatel-for-branch 0ms
 	! ip address 200.19.188.1/24
-	! exit
 	!
 	router bgp 19180
 	 bgp router-id 139.82.0.2
@@ -358,7 +329,6 @@ node n103 {
 	 neighbor 143.54.0.25 remote-as 40260
 	 neighbor 24.111.0.57 remote-as 3356
 	 !neighbor 200.19.188.4 remote-as 19182
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -366,20 +336,6 @@ node n103 {
 	ip route 190.0.0.0/8 10.255.255.10
 	ip route 200.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -418,7 +374,7 @@ node n104 {
     interface-peer {eth2 n101}
     interface-peer {eth3 n103}
     interface-peer {eth4 n164}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -428,38 +384,39 @@ node n104 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.104/24
-	 exit
 	!
 	interface eth1
 	 description americatel-bai-lim 16ms
 	 ip address 139.82.0.10/30
-	 exit
 	!
 	interface eth2
 	 description americatel-bog-lim 12ms
 	 ip address 139.82.0.13/30
-	 exit
 	!
 	interface eth3
 	 description americatel-for-lim 28ms
 	 ip address 139.82.0.22/30
-	 exit
 	!
 	interface eth4
 	 description terra-lim-americatel 4ms
 	 ip address 143.54.0.30/30
-	 exit
 	!
 	!interface eth5
 	! description americatel-lim-branch 0ms
 	! ip address 190.81.10.1/24
-	! exit
 	!
 	router bgp 19180
 	 bgp router-id 139.82.0.10
@@ -473,27 +430,12 @@ node n104 {
 	 neighbor 139.82.0.21 next-hop-self
 	 neighbor 143.54.0.29 remote-as 40260
 	 !neighbor 190.81.10.2 remote-as 4882
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
 	ip route 177.0.0.0/8 10.255.255.10
 	ip route 200.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -532,7 +474,7 @@ node n105 {
     interface-peer {eth2 n109}
     interface-peer {eth3 n108}
     interface-peer {eth4 n141}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -542,38 +484,39 @@ node n105 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.105/24
-	 exit
 	!
 	interface eth1
 	 description bt-hel-lon 12ms
 	 ip address 77.104.0.2/30
-	 exit
 	!
 	interface eth2
 	 description bt-hel-mow 6ms
 	 ip address 77.104.0.5/30
-	 exit
 	!
 	interface eth3
 	 description bt-hel-mrs 15ms
 	 ip address 77.104.0.29/30
-	 exit
 	!
 	interface eth4
 	 description bt-hel-sky 4ms
 	 ip address 77.104.0.33/30
-	 exit
 	!
 	!interface eth5
 	! description bt-hel-branch 0ms
 	! ip address 81.22.162.1/24
-	! exit
 	!
 	router bgp 2856
 	 bgp router-id 77.104.0.2
@@ -586,7 +529,6 @@ node n105 {
 	 neighbor 77.104.0.30 remote-as 2856
 	 neighbor 77.104.0.30 next-hop-self
 	 neighbor 77.104.0.34 remote-as 23994
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -601,20 +543,6 @@ node n105 {
 	ip route 213.0.0.0/8 10.255.255.10
 	ip route 217.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -653,7 +581,7 @@ node n106 {
     interface-peer {eth2 n107}
     interface-peer {eth3 n142}
     interface-peer {eth4 n112}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -663,38 +591,39 @@ node n106 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.106/24
-	 exit
 	!
 	interface eth1
 	 description bt-lis-mrs 8ms
 	 ip address 77.104.0.14/30
-	 exit
 	!
 	interface eth2
 	 description bt-lis-lon 10ms
 	 ip address 77.104.0.17/30
-	 exit
 	!
 	interface eth3
 	 description bt-lis-sky 4ms
 	 ip address 77.104.0.41/30
-	 exit
 	!
 	interface eth4
 	 description bt-lis-mia-centurylink 44ms
 	 ip address 77.104.0.45/30
-	 exit
 	!
 	!interface eth5
 	! description bt-lis-branch 0ms
 	! ip address 77.54.154.1/24
-	! exit
 	!
 	router bgp 2856
 	 bgp router-id 77.104.0.14
@@ -706,7 +635,6 @@ node n106 {
 	 neighbor 77.104.0.18 next-hop-self
 	 neighbor 77.104.0.42 remote-as 23994
 	 neighbor 77.104.0.46 remote-as 1456
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -722,20 +650,6 @@ node n106 {
 	ip route 195.0.0.0/8 10.255.255.10
 	ip route 199.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -782,7 +696,7 @@ node n107 {
     interface-peer {eth4 n109}
     interface-peer {eth5 n143}
     interface-peer {eth6 n124}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -792,48 +706,47 @@ node n107 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.107/24
-	 exit
 	!
 	interface eth1
 	 description bt-hel-lon 12ms
 	 ip address 77.104.0.1/30
-	 exit
 	!
 	interface eth2
 	 description bt-lis-lon 10ms
 	 ip address 77.104.0.18/30
-	 exit
 	!
 	interface eth3
 	 description bt-lon-mrs 6ms
 	 ip address 77.104.0.21/30
-	 exit
 	!
 	interface eth4
 	 description bt-lon-mow 16ms
 	 ip address 77.104.0.25/30
-	 exit
 	!
 	interface eth5
 	 description sky-lon-bt 4ms
 	 ip address 94.60.0.34/30
-	 exit
 	!
 	interface eth6
 	 description bt-lon-iap4-iap4 3ms
 	 ip address 77.104.0.49/30
-	 exit
 	!
 	!interface eth7
 	! description bt-lon-branch 0ms
 	! ip address 157.83.96.1/24
-	! exit
 	!
 	router bgp 2856
 	 bgp router-id 77.104.0.1
@@ -855,7 +768,6 @@ node n107 {
 	 neighbor 94.60.0.33 remote-as 23994
 	 !neighbor 157.83.96.2 remote-as 15395
 	 !neighbor 157.83.96.4 remote-as 2858
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -872,20 +784,6 @@ node n107 {
 	ip route 149.0.0.0/8 10.255.255.10
 	ip route 192.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -932,7 +830,7 @@ node n108 {
     interface-peer {eth4 n105}
     interface-peer {eth5 n144}
     interface-peer {eth6 n153}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -942,48 +840,47 @@ node n108 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.108/24
-	 exit
 	!
 	interface eth1
 	 description bt-mow-mrs 17ms
 	 ip address 77.104.0.10/30
-	 exit
 	!
 	interface eth2
 	 description bt-lis-mrs 8ms
 	 ip address 77.104.0.13/30
-	 exit
 	!
 	interface eth3
 	 description bt-lon-mrs 6ms
 	 ip address 77.104.0.22/30
-	 exit
 	!
 	interface eth4
 	 description bt-hel-mrs 15ms
 	 ip address 77.104.0.30/30
-	 exit
 	!
 	interface eth5
 	 description bt-mrs-sky 4ms
 	 ip address 77.104.0.37/30
-	 exit
 	!
 	interface eth6
 	 description tedata-cai-mrs-bt 18ms
 	 ip address 95.212.0.46/30
-	 exit
 	!
 	!interface eth7
 	! description bt-mrs-branch 0ms
 	! ip address 78.232.138.1/24
-	! exit
 	!
 	router bgp 2856
 	 bgp router-id 77.104.0.10
@@ -1003,7 +900,6 @@ node n108 {
 	 neighbor 77.104.0.29 next-hop-self all
 	 neighbor 77.104.0.38 remote-as 23994
 	 neighbor 95.212.0.45 remote-as 8452
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -1019,20 +915,6 @@ node n108 {
 	ip route 195.0.0.0/8 10.255.255.10
 	ip route 217.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -1075,7 +957,7 @@ node n109 {
     interface-peer {eth3 n107}
     interface-peer {eth4 n145}
     interface-peer {eth5 n133}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -1085,43 +967,43 @@ node n109 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.109/24
-	 exit
 	!
 	interface eth1
 	 description bt-hel-mow 6ms
 	 ip address 77.104.0.6/30
-	 exit
 	!
 	interface eth2
 	 description bt-mow-mrs 17ms
 	 ip address 77.104.0.9/30
-	 exit
 	!
 	interface eth3
 	 description bt-lon-mow 16ms
 	 ip address 77.104.0.26/30
-	 exit
 	!
 	interface eth4
 	 description sky-mow-bt 4ms
 	 ip address 94.60.0.38/30
-	 exit
 	!
 	interface eth5
 	 description pacnet-kja-mow-bt 22ms
 	 ip address 114.144.0.50/30
-	 exit
 	!
 	!interface eth6
 	! description bt-mow-branch 0ms
 	! ip address 94.228.204.1/24
-	! exit
 	!
 	router bgp 2856
 	 bgp router-id 77.104.0.6
@@ -1135,7 +1017,6 @@ node n109 {
 	 neighbor 77.104.0.25 next-hop-self
 	 neighbor 94.60.0.37 remote-as 23994
 	 neighbor 114.144.0.49 remote-as 10026
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -1148,20 +1029,6 @@ node n109 {
 	ip route 195.0.0.0/8 10.255.255.10
 	ip route 212.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -1208,7 +1075,7 @@ node n110 {
     interface-peer {eth4 n113}
     interface-peer {eth5 n114}
     interface-peer {eth6 n125}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -1218,48 +1085,47 @@ node n110 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.110/24
-	 exit
 	!
 	interface eth1
 	 description centurylink-kck-mia 13ms
 	 ip address 50.128.0.14/30
-	 exit
 	!
 	interface eth2
 	 description centurylink-kck-lax 14ms
 	 ip address 50.128.0.17/30
-	 exit
 	!
 	interface eth3
 	 description centurylink-kck-pdx 15ms
 	 ip address 50.128.0.26/30
-	 exit
 	!
 	interface eth4
 	 description centurylink-kck-mic 4ms
 	 ip address 50.128.0.34/30
-	 exit
 	!
 	interface eth5
 	 description centurylink-kck-nyc 11ms
 	 ip address 50.128.0.42/30
-	 exit
 	!
 	interface eth6
 	 description level3-kck-centurylink 4ms
 	 ip address 24.111.0.54/30
-	 exit
 	!
 	!interface eth7
 	! description centurylink-kck-branch 0ms
 	! ip address 107.150.55.1/24
-	! exit
 	!
 	router bgp 1456
 	 bgp router-id 50.128.0.14
@@ -1284,7 +1150,6 @@ node n110 {
 	 !neighbor 107.150.55.2 remote-as 13695
 	 !neighbor 107.150.55.3 remote-as 26496
 	 !neighbor 107.150.55.4 remote-as 1461
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -1306,20 +1171,6 @@ node n110 {
 	ip route 174.0.0.0/8 10.255.255.10
 	ip route 207.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -1366,7 +1217,7 @@ node n111 {
     interface-peer {eth4 n126}
     interface-peer {eth5 n11}
     interface-peer {eth6 n164}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -1376,48 +1227,47 @@ node n111 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.111/24
-	 exit
 	!
 	interface eth1
 	 description centurylink-kck-lax 14ms
 	 ip address 50.128.0.18/30
-	 exit
 	!
 	interface eth2
 	 description centurylink-lax-pdx 8ms
 	 ip address 50.128.0.21/30
-	 exit
 	!
 	interface eth3
 	 description centurylink-lax-mic 16ms
 	 ip address 50.128.0.30/30
-	 exit
 	!
 	interface eth4
 	 description centurylink-lax-level3 4ms
 	 ip address 50.128.0.53/30
-	 exit
 	!
 	interface eth5
 	 description centurylink-lax-syd-telstra 80ms
 	 ip address 50.128.0.65/30
-	 exit
 	!
 	interface eth6
 	 description terra-lim-lax-centurylink 44ms
 	 ip address 143.54.0.38/30
-	 exit
 	!
 	!interface eth7
 	! description centurylink-lax-branch 0ms
 	! ip address 70.39.185.1/24
-	! exit
 	!
 	router bgp 1456
 	 bgp router-id 50.128.0.18
@@ -1433,7 +1283,6 @@ node n111 {
 	 neighbor 50.128.0.66 remote-as 1221
 	 neighbor 143.54.0.37 remote-as 40260
 	 !neighbor 70.39.185.4 remote-as 1462
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -1456,20 +1305,6 @@ node n111 {
 	ip route 198.0.0.0/8 10.255.255.10
 	ip route 216.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -1516,7 +1351,7 @@ node n112 {
     interface-peer {eth4 n127}
     interface-peer {eth5 n122}
     interface-peer {eth6 n106}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -1526,48 +1361,47 @@ node n112 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.112/24
-	 exit
 	!
 	interface eth1
 	 description centurylink-mia-nyc 11ms
 	 ip address 50.128.0.10/30
-	 exit
 	!
 	interface eth2
 	 description centurylink-kck-mia 13ms
 	 ip address 50.128.0.13/30
-	 exit
 	!
 	interface eth3
 	 description centurylink-mia-mic 16ms
 	 ip address 50.128.0.38/30
-	 exit
 	!
 	interface eth4
 	 description centurylink-mia-level3 4ms
 	 ip address 50.128.0.49/30
-	 exit
 	!
 	interface eth5
 	 description centurylink-mia-iap2-iap2 6ms
 	 ip address 50.128.0.69/30
-	 exit
 	!
 	interface eth6
 	 description bt-lis-mia-centurylink 44ms
 	 ip address 77.104.0.46/30
-	 exit
 	!
 	!interface eth7
 	! description centurylink-mia-branch 0ms
 	! ip address 72.252.9.1/24
-	! exit
 	!
 	router bgp 1456
 	 bgp router-id 50.128.0.10
@@ -1584,7 +1418,6 @@ node n112 {
 	 neighbor 77.104.0.45 remote-as 2856
 	 !neighbor 72.252.9.3 remote-as 26423
 	 !neighbor 72.252.9.2 remote-as 6231
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -1606,20 +1439,6 @@ node n112 {
 	ip route 185.0.0.0/8 10.255.255.10
 	ip route 199.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -1666,7 +1485,7 @@ node n113 {
     interface-peer {eth4 n110}
     interface-peer {eth5 n112}
     interface-peer {eth6 n128}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -1676,48 +1495,47 @@ node n113 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.113/24
-	 exit
 	!
 	interface eth1
 	 description centurylink-mic-pdx 15ms
 	 ip address 50.128.0.2/30
-	 exit
 	!
 	interface eth2
 	 description centurylink-mic-nyc 10ms
 	 ip address 50.128.0.5/30
-	 exit
 	!
 	interface eth3
 	 description centurylink-lax-mic 16ms
 	 ip address 50.128.0.29/30
-	 exit
 	!
 	interface eth4
 	 description centurylink-kck-mic 4ms
 	 ip address 50.128.0.33/30
-	 exit
 	!
 	interface eth5
 	 description centurylink-mia-mic 16ms
 	 ip address 50.128.0.37/30
-	 exit
 	!
 	interface eth6
 	 description centurylink-mic-level3 4ms
 	 ip address 50.128.0.45/30
-	 exit
 	!
 	!interface eth7
 	! description centurylink-mic-branch 0ms
 	! ip address 161.225.196.1/24
-	! exit
 	!
 	router bgp 1456
 	 bgp router-id 50.128.0.2
@@ -1742,7 +1560,6 @@ node n113 {
 	 !neighbor 161.225.196.2 remote-as 40034
 	 !neighbor 161.225.196.3 remote-as 3766
 	 !neighbor 161.225.196.4 remote-as 1458
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -1765,20 +1582,6 @@ node n113 {
 	ip route 204.0.0.0/8 10.255.255.10
 	ip route 208.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -1821,7 +1624,7 @@ node n114 {
     interface-peer {eth3 n110}
     interface-peer {eth4 n163}
     interface-peer {eth5 n129}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -1831,43 +1634,43 @@ node n114 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.114/24
-	 exit
 	!
 	interface eth1
 	 description centurylink-mic-nyc 10ms
 	 ip address 50.128.0.6/30
-	 exit
 	!
 	interface eth2
 	 description centurylink-mia-nyc 11ms
 	 ip address 50.128.0.9/30
-	 exit
 	!
 	interface eth3
 	 description centurylink-kck-nyc 11ms
 	 ip address 50.128.0.41/30
-	 exit
 	!
 	interface eth4
 	 description centurylink-nyc-for-terra 40ms
 	 ip address 50.128.0.61/30
-	 exit
 	!
 	interface eth5
 	 description level3-nyc-centurylink 4ms
 	 ip address 24.111.0.50/30
-	 exit
 	!
 	!interface eth6
 	! description centurylink-nyc-branch 0ms
 	! ip address 67.221.255.1/24
-	! exit
 	!
 	router bgp 1456
 	 bgp router-id 50.128.0.6
@@ -1883,7 +1686,6 @@ node n114 {
 	 neighbor 24.111.0.49 remote-as 3356
 	 !neighbor 67.221.255.2 remote-as 14325
 	 !neighbor 67.221.255.4 remote-as 1459
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -1906,20 +1708,6 @@ node n114 {
 	ip route 206.0.0.0/8 10.255.255.10
 	ip route 209.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -1962,7 +1750,7 @@ node n115 {
     interface-peer {eth3 n110}
     interface-peer {eth4 n21}
     interface-peer {eth5 n130}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -1972,43 +1760,43 @@ node n115 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.115/24
-	 exit
 	!
 	interface eth1
 	 description centurylink-mic-pdx 15ms
 	 ip address 50.128.0.1/30
-	 exit
 	!
 	interface eth2
 	 description centurylink-lax-pdx 8ms
 	 ip address 50.128.0.22/30
-	 exit
 	!
 	interface eth3
 	 description centurylink-kck-pdx 15ms
 	 ip address 50.128.0.25/30
-	 exit
 	!
 	interface eth4
 	 description centurylink-pdx-tyo-pacnet 52ms
 	 ip address 50.128.0.57/30
-	 exit
 	!
 	interface eth5
 	 description level3-pdx-centurylink 4ms
 	 ip address 24.111.0.46/30
-	 exit
 	!
 	!interface eth6
 	! description centurylink-pdx-branch 0ms
 	! ip address 69.163.47.1/24
-	! exit
 	!
 	router bgp 1456
 	 bgp router-id 50.128.0.1
@@ -2023,7 +1811,6 @@ node n115 {
 	 neighbor 50.128.0.58 remote-as 10026
 	 neighbor 24.111.0.45 remote-as 3356
 	 !neighbor 69.163.47.4 remote-as 1457
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -2046,20 +1833,6 @@ node n115 {
 	ip route 204.0.0.0/8 10.255.255.10
 	ip route 216.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -2098,7 +1871,7 @@ node n116 {
     interface-peer {eth2 n119}
     interface-peer {eth3 n120}
     interface-peer {eth4 n122}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -2108,38 +1881,39 @@ node n116 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.116/24
-	 exit
 	!
 	interface eth1
 	 description dodin-alpha-bravo 76ms
 	 ip address 156.0.0.1/30
-	 exit
 	!
 	interface eth2
 	 description dodin-alpha-delta 5ms
 	 ip address 156.0.0.14/30
-	 exit
 	!
 	interface eth3
 	 description dodin-alpha-svc 4ms
 	 ip address 156.0.0.17/30
-	 exit
 	!
 	interface eth4
 	 description dodin-alpha-iap2-iap2 0ms
 	 ip address 156.0.0.33/30
-	 exit
 	!
 	!interface eth5
 	! description dodin-alpha-branch 0ms
 	! ip address 156.0.1.1/24
-	! exit
 	!
 	router bgp 3472
 	 bgp router-id 156.0.0.1
@@ -2158,27 +1932,12 @@ node n116 {
 	 !neighbor 156.0.1.5 remote-as 27064
 	 !neighbor 156.0.1.6 remote-as 2555
 	 !neighbor 156.0.1.7 remote-as 2556
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
 	ip route 131.0.0.0/8 10.255.255.10
 	ip route 214.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -2217,7 +1976,7 @@ node n117 {
     interface-peer {eth2 n118}
     interface-peer {eth3 n120}
     interface-peer {eth4 n123}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -2227,38 +1986,39 @@ node n117 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.117/24
-	 exit
 	!
 	interface eth1
 	 description dodin-alpha-bravo 76ms
 	 ip address 156.0.0.2/30
-	 exit
 	!
 	interface eth2
 	 description dodin-bravo-charlie 57ms
 	 ip address 156.0.0.5/30
-	 exit
 	!
 	interface eth3
 	 description dodin-bravo-svc 72ms
 	 ip address 156.0.0.21/30
-	 exit
 	!
 	interface eth4
 	 description dodin-bravo-iap3-iap3 0ms
 	 ip address 156.0.0.37/30
-	 exit
 	!
 	!interface eth5
 	! description dodin-bravo-branch 0ms
 	! ip address 156.0.2.1/24
-	! exit
 	!
 	router bgp 3472
 	 bgp router-id 156.0.0.2
@@ -2276,27 +2036,12 @@ node n117 {
 	 !neighbor 156.0.2.4 remote-as 27030
 	 !neighbor 156.0.2.5 remote-as 3561
 	 !neighbor 156.0.2.6 remote-as 20486
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
 	ip route 131.0.0.0/8 10.255.255.10
 	ip route 214.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -2335,7 +2080,7 @@ node n118 {
     interface-peer {eth2 n119}
     interface-peer {eth3 n120}
     interface-peer {eth4 n124}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -2345,38 +2090,39 @@ node n118 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.118/24
-	 exit
 	!
 	interface eth1
 	 description dodin-bravo-charlie 57ms
 	 ip address 156.0.0.6/30
-	 exit
 	!
 	interface eth2
 	 description dodin-charlie-delta 43ms
 	 ip address 156.0.0.9/30
-	 exit
 	!
 	interface eth3
 	 description dodin-charlie-svc 45ms
 	 ip address 156.0.0.25/30
-	 exit
 	!
 	interface eth4
 	 description dodin-charlie-iap4-iap4 0ms
 	 ip address 156.0.0.41/30
-	 exit
 	!
 	!interface eth5
 	! description dodin-charlie-branch 0ms
 	! ip address 156.0.3.1/24
-	! exit
 	!
 	router bgp 3472
 	 bgp router-id 156.0.0.6
@@ -2395,27 +2141,12 @@ node n118 {
 	 !neighbor 156.0.3.5 remote-as 630
 	 !neighbor 156.0.3.6 remote-as 20487
 	 !neighbor 156.0.3.7 remote-as 9416
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
 	ip route 131.0.0.0/8 10.255.255.10
 	ip route 214.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -2454,7 +2185,7 @@ node n119 {
     interface-peer {eth2 n116}
     interface-peer {eth3 n120}
     interface-peer {eth4 n121}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -2464,38 +2195,39 @@ node n119 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.119/24
-	 exit
 	!
 	interface eth1
 	 description dodin-charlie-delta 43ms
 	 ip address 156.0.0.10/30
-	 exit
 	!
 	interface eth2
 	 description dodin-alpha-delta 5ms
 	 ip address 156.0.0.13/30
-	 exit
 	!
 	interface eth3
 	 description dodin-delta-svc 3ms
 	 ip address 156.0.0.29/30
-	 exit
 	!
 	interface eth4
 	 description dodin-delta-iap1-iap1 0ms
 	 ip address 156.0.0.45/30
-	 exit
 	!
 	!interface eth5
 	! description dodin-delta-branch 0ms
 	! ip address 156.0.4.1/24
-	! exit
 	!
 	router bgp 3472
 	 bgp router-id 156.0.0.10
@@ -2514,27 +2246,12 @@ node n119 {
 	 !neighbor 156.0.4.5 remote-as 27066
 	 !neighbor 156.0.4.6 remote-as 209
 	 !neighbor 156.0.4.7 remote-as 20488
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
 	ip route 131.0.0.0/8 10.255.255.10
 	ip route 214.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -2573,7 +2290,7 @@ node n120 {
     interface-peer {eth2 n117}
     interface-peer {eth3 n118}
     interface-peer {eth4 n119}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -2583,38 +2300,39 @@ node n120 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.120/24
-	 exit
 	!
 	interface eth1
 	 description dodin-alpha-svc 4ms
 	 ip address 156.0.0.18/30
-	 exit
 	!
 	interface eth2
 	 description dodin-bravo-svc 72ms
 	 ip address 156.0.0.22/30
-	 exit
 	!
 	interface eth3
 	 description dodin-charlie-svc 45ms
 	 ip address 156.0.0.26/30
-	 exit
 	!
 	interface eth4
 	 description dodin-delta-svc 3ms
 	 ip address 156.0.0.30/30
-	 exit
 	!
 	!interface eth5
 	! description dodin-svc-branch 0ms
 	! ip address 156.156.156.1/24
-	! exit
 	!
 	router bgp 3472
 	 bgp router-id 156.0.0.18
@@ -2633,24 +2351,9 @@ node n120 {
 	 neighbor 156.0.0.29 remote-as 3472
 	 neighbor 156.0.0.29 route-reflector-client
 	 neighbor 156.0.0.29 next-hop-self all
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -2682,7 +2385,7 @@ node n121 {
     interface-peer {eth1 n129}
     interface-peer {eth2 n119}
     interface-peer {eth3 n410}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -2692,28 +2395,31 @@ node n121 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.121/24
-	 exit
 	!
 	interface eth1
 	 description level3-nyc-iap1-iap1 2ms
 	 ip address 24.111.0.66/30
-	 exit
 	!
 	interface eth2
 	 description dodin-delta-iap1-iap1 0ms
 	 ip address 156.0.0.46/30
-	 exit
 	!
 	interface eth3
 	 description delta-user-network
 	 ip address 12.0.0.41/29
-	 exit
 	!
 	router bgp 3473
 	 bgp router-id 24.111.0.66
@@ -2721,24 +2427,9 @@ node n121 {
 	 redistribute static
 	 neighbor 24.111.0.65 remote-as 3356
 	 neighbor 156.0.0.45 remote-as 3472
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -2766,7 +2457,7 @@ node n122 {
     interface-peer {eth0 n300}
     interface-peer {eth1 n112}
     interface-peer {eth2 n116}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -2776,23 +2467,27 @@ node n122 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.122/24
-	 exit
 	!
 	interface eth1
 	 description centurylink-mia-iap2-iap2 6ms
 	 ip address 50.128.0.70/30
-	 exit
 	!
 	interface eth2
 	 description dodin-alpha-iap2-iap2 0ms
 	 ip address 156.0.0.34/30
-	 exit
 	!
 	router bgp 3474
 	 bgp router-id 50.128.0.70
@@ -2800,24 +2495,9 @@ node n122 {
 	 redistribute static
 	 neighbor 50.128.0.69 remote-as 1456
 	 neighbor 156.0.0.33 remote-as 3472
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -2845,7 +2525,7 @@ node n123 {
     interface-peer {eth0 n300}
     interface-peer {eth1 n140}
     interface-peer {eth2 n117}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -2855,23 +2535,27 @@ node n123 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.123/24
-	 exit
 	!
 	interface eth1
 	 description singtel-syd-iap3-iap3 55ms
 	 ip address 49.2.0.38/30
-	 exit
 	!
 	interface eth2
 	 description dodin-bravo-iap3-iap3 0ms
 	 ip address 156.0.0.38/30
-	 exit
 	!
 	router bgp 3475
 	 bgp router-id 49.2.0.38
@@ -2879,24 +2563,9 @@ node n123 {
 	 redistribute static
 	 neighbor 49.2.0.37 remote-as 7473
 	 neighbor 156.0.0.37 remote-as 3472
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -2928,7 +2597,7 @@ node n124 {
     interface-peer {eth1 n107}
     interface-peer {eth2 n118}
     interface-peer {eth3 n420}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -2938,28 +2607,31 @@ node n124 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.124/24
-	 exit
 	!
 	interface eth1
 	 description bt-lon-iap4-iap4 3ms
 	 ip address 77.104.0.50/30
-	 exit
 	!
 	interface eth2
 	 description dodin-charlie-iap4-iap4 0ms
 	 ip address 156.0.0.42/30
-	 exit
 	!
 	interface eth3
 	 description charlie-user-network
 	 ip address 12.0.0.49/29
-	 exit
 	!
 	router bgp 3476
 	 bgp router-id 77.104.0.50
@@ -2967,24 +2639,9 @@ node n124 {
 	 redistribute static
 	 neighbor 77.104.0.49 remote-as 2856
 	 neighbor 156.0.0.41 remote-as 3472
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -3031,7 +2688,7 @@ node n125 {
     interface-peer {eth4 n128}
     interface-peer {eth5 n129}
     interface-peer {eth6 n110}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -3041,48 +2698,47 @@ node n125 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.125/24
-	 exit
 	!
 	interface eth1
 	 description level3-kck-mia 13ms
 	 ip address 24.111.0.14/30
-	 exit
 	!
 	interface eth2
 	 description level3-kck-lax 14ms
 	 ip address 24.111.0.17/30
-	 exit
 	!
 	interface eth3
 	 description level3-kck-pdx 15ms
 	 ip address 24.111.0.26/30
-	 exit
 	!
 	interface eth4
 	 description level3-kck-mic 4ms
 	 ip address 24.111.0.34/30
-	 exit
 	!
 	interface eth5
 	 description level3-kck-nyc 11ms
 	 ip address 24.111.0.42/30
-	 exit
 	!
 	interface eth6
 	 description level3-kck-centurylink 4ms
 	 ip address 24.111.0.53/30
-	 exit
 	!
 	!interface eth7
 	! description level3-kck-branch 0ms
 	! ip address 192.187.100.1/24
-	! exit
 	!
 	router bgp 3356
 	 bgp router-id 24.111.0.14
@@ -3105,7 +2761,6 @@ node n125 {
 	 neighbor 24.111.0.41 next-hop-self all
 	 neighbor 24.111.0.54 remote-as 1456
 	 !neighbor 192.187.100.3 remote-as 22803
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -3128,20 +2783,6 @@ node n125 {
 	ip route 205.0.0.0/8 10.255.255.10
 	ip route 209.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -3184,7 +2825,7 @@ node n126 {
     interface-peer {eth3 n128}
     interface-peer {eth4 n31}
     interface-peer {eth5 n111}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -3194,43 +2835,43 @@ node n126 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.126/24
-	 exit
 	!
 	interface eth1
 	 description level3-kck-lax 14ms
 	 ip address 24.111.0.18/30
-	 exit
 	!
 	interface eth2
 	 description level3-lax-pdx 8ms
 	 ip address 24.111.0.21/30
-	 exit
 	!
 	interface eth3
 	 description level3-lax-mic 16ms
 	 ip address 24.111.0.30/30
-	 exit
 	!
 	interface eth4
 	 description level3-lax-tyo-tata 58ms
 	 ip address 24.111.0.61/30
-	 exit
 	!
 	interface eth5
 	 description centurylink-lax-level3 4ms
 	 ip address 50.128.0.54/30
-	 exit
 	!
 	!interface eth6
 	! description level3-lax-branch 0ms
 	! ip address 96.47.226.1/24
-	! exit
 	!
 	router bgp 3356
 	 bgp router-id 24.111.0.18
@@ -3246,7 +2887,6 @@ node n126 {
 	 neighbor 50.128.0.53 remote-as 1456
 	 !neighbor 96.47.226.2 remote-as 701
 	 !neighbor 96.47.226.4 remote-as 3362
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -3269,20 +2909,6 @@ node n126 {
 	ip route 204.0.0.0/8 10.255.255.10
 	ip route 208.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -3325,7 +2951,7 @@ node n127 {
     interface-peer {eth3 n128}
     interface-peer {eth4 n103}
     interface-peer {eth5 n112}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -3335,43 +2961,43 @@ node n127 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.127/24
-	 exit
 	!
 	interface eth1
 	 description level3-mia-nyc 11ms
 	 ip address 24.111.0.10/30
-	 exit
 	!
 	interface eth2
 	 description level3-kck-mia 13ms
 	 ip address 24.111.0.13/30
-	 exit
 	!
 	interface eth3
 	 description level3-mia-mic 16ms
 	 ip address 24.111.0.38/30
-	 exit
 	!
 	interface eth4
 	 description level3-mia-for-americatel 37ms
 	 ip address 24.111.0.57/30
-	 exit
 	!
 	interface eth5
 	 description centurylink-mia-level3 4ms
 	 ip address 50.128.0.50/30
-	 exit
 	!
 	!interface eth6
 	! description level3-mia-branch 0ms
 	! ip address 69.60.121.1/24
-	! exit
 	!
 	router bgp 3356
 	 bgp router-id 24.111.0.10
@@ -3386,7 +3012,6 @@ node n127 {
 	 neighbor 24.111.0.58 remote-as 19180
 	 neighbor 50.128.0.49 remote-as 1456
 	 !neighbor 69.60.121.2 remote-as 7018
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -3408,20 +3033,6 @@ node n127 {
 	ip route 192.0.0.0/8 10.255.255.10
 	ip route 206.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -3468,7 +3079,7 @@ node n128 {
     interface-peer {eth4 n125}
     interface-peer {eth5 n127}
     interface-peer {eth6 n113}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -3478,48 +3089,47 @@ node n128 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.128/24
-	 exit
 	!
 	interface eth1
 	 description level3-mic-pdx 15ms
 	 ip address 24.111.0.2/30
-	 exit
 	!
 	interface eth2
 	 description level3-mic-nyc 10ms
 	 ip address 24.111.0.5/30
-	 exit
 	!
 	interface eth3
 	 description level3-lax-mic 16ms
 	 ip address 24.111.0.29/30
-	 exit
 	!
 	interface eth4
 	 description level3-kck-mic 4ms
 	 ip address 24.111.0.33/30
-	 exit
 	!
 	interface eth5
 	 description level3-mia-mic 16ms
 	 ip address 24.111.0.37/30
-	 exit
 	!
 	interface eth6
 	 description centurylink-mic-level3 4ms
 	 ip address 50.128.0.46/30
-	 exit
 	!
 	!interface eth7
 	! description level3-mic-branch 0ms
 	! ip address 170.135.241.1/24
-	! exit
 	!
 	router bgp 3356
 	 bgp router-id 24.111.0.2
@@ -3542,7 +3152,6 @@ node n128 {
 	 neighbor 24.111.0.38 next-hop-self all
 	 neighbor 50.128.0.45 remote-as 1456
 	 !neighbor 170.135.241.4 remote-as 3358
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -3564,20 +3173,6 @@ node n128 {
 	ip route 170.0.0.0/8 10.255.255.10
 	ip route 205.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -3624,7 +3219,7 @@ node n129 {
     interface-peer {eth4 n114}
     interface-peer {eth5 n121}
     interface-peer {eth6 n143}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -3634,48 +3229,47 @@ node n129 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.129/24
-	 exit
 	!
 	interface eth1
 	 description level3-mic-nyc 10ms
 	 ip address 24.111.0.6/30
-	 exit
 	!
 	interface eth2
 	 description level3-mia-nyc 11ms
 	 ip address 24.111.0.9/30
-	 exit
 	!
 	interface eth3
 	 description level3-kck-nyc 11ms
 	 ip address 24.111.0.41/30
-	 exit
 	!
 	interface eth4
 	 description level3-nyc-centurylink 4ms
 	 ip address 24.111.0.49/30
-	 exit
 	!
 	interface eth5
 	 description level3-nyc-iap1-iap1 2ms
 	 ip address 24.111.0.65/30
-	 exit
 	!
 	interface eth6
 	 description sky-lon-nyc-level3 37ms
 	 ip address 94.60.0.42/30
-	 exit
 	!
 	!interface eth7
 	! description level3-nyc-branch 0ms
 	! ip address 104.131.66.1/24
-	! exit
 	!
 	router bgp 3356
 	 bgp router-id 24.111.0.6
@@ -3693,7 +3287,6 @@ node n129 {
 	 !neighbor 104.131.66.2 remote-as 23503
 	 !neighbor 104.131.66.3 remote-as 19991
 	 !neighbor 104.131.66.4 remote-as 3359
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -3715,20 +3308,6 @@ node n129 {
 	ip route 170.0.0.0/8 10.255.255.10
 	ip route 205.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -3767,7 +3346,7 @@ node n130 {
     interface-peer {eth2 n126}
     interface-peer {eth3 n125}
     interface-peer {eth4 n115}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -3777,38 +3356,39 @@ node n130 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.130/24
-	 exit
 	!
 	interface eth1
 	 description level3-mic-pdx 15ms
 	 ip address 24.111.0.1/30
-	 exit
 	!
 	interface eth2
 	 description level3-lax-pdx 8ms
 	 ip address 24.111.0.22/30
-	 exit
 	!
 	interface eth3
 	 description level3-kck-pdx 15ms
 	 ip address 24.111.0.25/30
-	 exit
 	!
 	interface eth4
 	 description level3-pdx-centurylink 4ms
 	 ip address 24.111.0.45/30
-	 exit
 	!
 	!interface eth5
 	! description level3-pdx-branch 0ms
 	! ip address 199.87.230.1/24
-	! exit
 	!
 	router bgp 3356
 	 bgp router-id 24.111.0.1
@@ -3822,7 +3402,6 @@ node n130 {
 	 neighbor 24.111.0.26 next-hop-self
 	 neighbor 24.111.0.46 remote-as 1456
 	 !neighbor 199.87.230.4 remote-as 3357
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -3844,20 +3423,6 @@ node n130 {
 	ip route 184.0.0.0/8 10.255.255.10
 	ip route 207.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -3904,7 +3469,7 @@ node n131 {
     interface-peer {eth4 n132}
     interface-peer {eth5 n136}
     interface-peer {eth6 n146}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -3914,48 +3479,47 @@ node n131 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.131/24
-	 exit
 	!
 	interface eth1
 	 description pacnet-bjs-kja 16ms
 	 ip address 114.144.0.2/30
-	 exit
 	!
 	interface eth2
 	 description pacnet-bjs-sel 6ms
 	 ip address 114.144.0.5/30
-	 exit
 	!
 	interface eth3
 	 description pacnet-bjs-bom 31ms
 	 ip address 114.144.0.22/30
-	 exit
 	!
 	interface eth4
 	 description pacnet-bjs-hkg 13ms
 	 ip address 114.144.0.25/30
-	 exit
 	!
 	interface eth5
 	 description pacnet-bjs-tyo 13ms
 	 ip address 114.144.0.29/30
-	 exit
 	!
 	interface eth6
 	 description tata-bjs-pacnet 4ms
 	 ip address 36.96.0.38/30
-	 exit
 	!
 	!interface eth7
 	! description pacnet-bjs-branch 0ms
 	! ip address 106.39.189.1/24
-	! exit
 	!
 	router bgp 10026
 	 bgp router-id 114.144.0.2
@@ -3979,7 +3543,6 @@ node n131 {
 	 neighbor 114.144.0.30 next-hop-self all
 	 neighbor 36.96.0.37 remote-as 6453
 	 !neighbor 106.39.189.4 remote-as 10028
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -3993,20 +3556,6 @@ node n131 {
 	ip route 183.0.0.0/8 10.255.255.10
 	ip route 220.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -4053,7 +3602,7 @@ node n132 {
     interface-peer {eth4 n135}
     interface-peer {eth5 n147}
     interface-peer {eth6 n159}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -4063,48 +3612,47 @@ node n132 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.132/24
-	 exit
 	!
 	interface eth1
 	 description pacnet-hkg-tyo 19ms
 	 ip address 114.144.0.14/30
-	 exit
 	!
 	interface eth2
 	 description pacnet-bom-hkg 28ms
 	 ip address 114.144.0.17/30
-	 exit
 	!
 	interface eth3
 	 description pacnet-bjs-hkg 13ms
 	 ip address 114.144.0.26/30
-	 exit
 	!
 	interface eth4
 	 description pacnet-hkg-sel 13ms
 	 ip address 114.144.0.34/30
-	 exit
 	!
 	interface eth5
 	 description pacnet-hkg-tata 4ms
 	 ip address 114.144.0.45/30
-	 exit
 	!
 	interface eth6
 	 description telstra-sin-hkg-pacnet 17ms
 	 ip address 110.20.0.34/30
-	 exit
 	!
 	!interface eth7
 	! description pacnet-hkg-branch 0ms
 	! ip address 119.81.161.1/24
-	! exit
 	!
 	router bgp 10026
 	 bgp router-id 114.144.0.14
@@ -4121,7 +3669,6 @@ node n132 {
 	 neighbor 114.144.0.46 remote-as 6453
 	 neighbor 110.20.0.33 remote-as 1221
 	 !neighbor 119.81.161.4 remote-as 10031
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -4134,20 +3681,6 @@ node n132 {
 	ip route 125.0.0.0/8 10.255.255.10
 	ip route 220.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -4183,7 +3716,7 @@ node n133 {
     interface-peer {eth2 n148}
     interface-peer {eth3 n109}
     interface-peer {eth4 n504}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -4193,33 +3726,35 @@ node n133 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.133/24
-	 exit
 	!
 	interface eth1
 	 description pacnet-bjs-kja 16ms
 	 ip address 114.144.0.1/30
-	 exit
 	!
 	interface eth2
 	 description pacnet-kja-tata 4ms
 	 ip address 114.144.0.37/30
-	 exit
 	!
 	interface eth3
 	 description pacnet-kja-mow-bt 22ms
 	 ip address 114.144.0.49/30
-	 exit
 	!
 	interface eth4
 	 description onion4-network
 	 ip address 109.226.199.1/24
-	 exit
 	!
 	router bgp 10026
 	 bgp router-id 114.144.0.1
@@ -4229,7 +3764,6 @@ node n133 {
 	 neighbor 114.144.0.2 next-hop-self
 	 neighbor 114.144.0.38 remote-as 6453
 	 neighbor 114.144.0.50 remote-as 2856
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -4237,20 +3771,6 @@ node n133 {
 	ip route 188.0.0.0/8 10.255.255.10
 	ip route 202.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -4293,7 +3813,7 @@ node n134 {
     interface-peer {eth3 n159}
     interface-peer {eth4 n149}
     interface-peer {eth5 n156}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -4303,43 +3823,43 @@ node n134 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.134/24
-	 exit
 	!
 	interface eth1
 	 description pacnet-bom-hkg 28ms
 	 ip address 114.144.0.18/30
-	 exit
 	!
 	interface eth2
 	 description pacnet-bjs-bom 31ms
 	 ip address 114.144.0.21/30
-	 exit
 	!
 	interface eth3
 	 description pacnet-bom-sin-telstra 26ms
 	 ip address 114.144.0.53/30
-	 exit
 	!
 	interface eth4
 	 description tata-bom-pacnet 4ms
 	 ip address 36.96.0.46/30
-	 exit
 	!
 	interface eth5
 	 description tedata-dxb-bom-pacnet 12ms
 	 ip address 95.212.0.50/30
-	 exit
 	!
 	!interface eth6
 	! description pacnet-bom-branch 0ms
 	! ip address 115.249.25.1/24
-	! exit
 	!
 	router bgp 10026
 	 bgp router-id 114.144.0.18
@@ -4352,7 +3872,6 @@ node n134 {
 	 neighbor 114.144.0.54 remote-as 1221
 	 neighbor 36.96.0.45 remote-as 6453
 	 neighbor 95.212.0.49 remote-as 8452
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -4362,20 +3881,6 @@ node n134 {
 	ip route 180.0.0.0/8 10.255.255.10
 	ip route 223.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -4414,7 +3919,7 @@ node n135 {
     interface-peer {eth2 n136}
     interface-peer {eth3 n132}
     interface-peer {eth4 n150}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -4424,38 +3929,39 @@ node n135 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.135/24
-	 exit
 	!
 	interface eth1
 	 description pacnet-bjs-sel 6ms
 	 ip address 114.144.0.6/30
-	 exit
 	!
 	interface eth2
 	 description pacnet-sel-tyo 7ms
 	 ip address 114.144.0.9/30
-	 exit
 	!
 	interface eth3
 	 description pacnet-hkg-sel 13ms
 	 ip address 114.144.0.33/30
-	 exit
 	!
 	interface eth4
 	 description pacnet-sel-tata 4ms
 	 ip address 114.144.0.41/30
-	 exit
 	!
 	!interface eth5
 	! description pacnet-sel-branch 0ms
 	! ip address 1.226.51.1/24
-	! exit
 	!
 	router bgp 10026
 	 bgp router-id 114.144.0.6
@@ -4468,7 +3974,6 @@ node n135 {
 	 neighbor 114.144.0.34 remote-as 10026
 	 neighbor 114.144.0.34 next-hop-self
 	 neighbor 114.144.0.42 remote-as 6453
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -4481,20 +3986,6 @@ node n135 {
 	ip route 210.0.0.0/8 10.255.255.10
 	ip route 218.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -4537,7 +4028,7 @@ node n136 {
     interface-peer {eth3 n131}
     interface-peer {eth4 n151}
     interface-peer {eth5 n22}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -4547,43 +4038,43 @@ node n136 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.136/24
-	 exit
 	!
 	interface eth1
 	 description pacnet-sel-tyo 7ms
 	 ip address 114.144.0.10/30
-	 exit
 	!
 	interface eth2
 	 description pacnet-hkg-tyo 19ms
 	 ip address 114.144.0.13/30
-	 exit
 	!
 	interface eth3
 	 description pacnet-bjs-tyo 13ms
 	 ip address 114.144.0.30/30
-	 exit
 	!
 	interface eth4
 	 description tata-tyo-pacnet 4ms
 	 ip address 36.96.0.42/30
-	 exit
 	!
 	interface eth5
 	 description centurylink-pdx-tyo-pacnet 52ms
 	 ip address 50.128.0.58/30
-	 exit
 	!
 	!interface eth6
 	! description pacnet-tyo-branch 0ms
 	! ip address 202.246.252.1/24
-	! exit
 	!
 	router bgp 10026
 	 bgp router-id 114.144.0.10
@@ -4598,7 +4089,6 @@ node n136 {
 	 neighbor 36.96.0.41 remote-as 6453
 	 neighbor 50.128.0.57 remote-as 1456
 	 !neighbor 202.246.252.4 remote-as 10030
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -4614,20 +4104,6 @@ node n136 {
 	ip route 203.0.0.0/8 10.255.255.10
 	ip route 210.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -4670,7 +4146,7 @@ node n137 {
     interface-peer {eth3 n138}
     interface-peer {eth4 n157}
     interface-peer {eth5 n147}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -4680,43 +4156,43 @@ node n137 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.137/24
-	 exit
 	!
 	interface eth1
 	 description singtel-mnl-sin 15ms
 	 ip address 49.2.0.2/30
-	 exit
 	!
 	interface eth2
 	 description singtel-mnl-syd 41ms
 	 ip address 49.2.0.5/30
-	 exit
 	!
 	interface eth3
 	 description singtel-mnl-per 34ms
 	 ip address 49.2.0.21/30
-	 exit
 	!
 	interface eth4
 	 description telstra-mnl-singtel 4ms
 	 ip address 110.20.0.26/30
-	 exit
 	!
 	interface eth5
 	 description tata-hkg-mnl-singtel 7ms
 	 ip address 36.96.0.54/30
-	 exit
 	!
 	!interface eth6
 	! description singtel-mnl-branch 0ms
 	! ip address 121.54.54.1/24
-	! exit
 	!
 	router bgp 7473
 	 bgp router-id 49.2.0.2
@@ -4730,7 +4206,6 @@ node n137 {
 	 neighbor 49.2.0.22 next-hop-self
 	 neighbor 110.20.0.25 remote-as 1221
 	 neighbor 36.96.0.53 remote-as 6453
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -4741,20 +4216,6 @@ node n137 {
 	ip route 125.0.0.0/8 10.255.255.10
 	ip route 223.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -4794,7 +4255,7 @@ node n138 {
     interface-peer {eth3 n137}
     interface-peer {eth4 n158}
     interface-peer {eth5 n503}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -4804,38 +4265,39 @@ node n138 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.138/24
-	 exit
 	!
 	interface eth1
 	 description singtel-per-syd 21ms
 	 ip address 49.2.0.10/30
-	 exit
 	!
 	interface eth2
 	 description singtel-per-sin 25ms
 	 ip address 49.2.0.13/30
-	 exit
 	!
 	interface eth3
 	 description singtel-mnl-per 34ms
 	 ip address 49.2.0.22/30
-	 exit
 	!
 	interface eth4
 	 description telstra-per-singtel 4ms
 	 ip address 110.20.0.30/30
-	 exit
 	!
 	interface eth5
 	 description onion3-network
 	 ip address 165.118.1.1/24
-	 exit
 	!
 	router bgp 7473
 	 bgp router-id 49.2.0.10
@@ -4849,7 +4311,6 @@ node n138 {
 	 neighbor 49.2.0.21 next-hop-self
 	 neighbor 110.20.0.29 remote-as 1221
 	 !neighbor 165.118.1.4 remote-as 7477
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -4858,20 +4319,6 @@ node n138 {
 	ip route 116.0.0.0/8 10.255.255.10
 	ip route 175.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -4914,7 +4361,7 @@ node n139 {
     interface-peer {eth3 n140}
     interface-peer {eth4 n159}
     interface-peer {eth5 n167}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -4924,43 +4371,43 @@ node n139 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.139/24
-	 exit
 	!
 	interface eth1
 	 description singtel-mnl-sin 15ms
 	 ip address 49.2.0.1/30
-	 exit
 	!
 	interface eth2
 	 description singtel-per-sin 25ms
 	 ip address 49.2.0.14/30
-	 exit
 	!
 	interface eth3
 	 description singtel-sin-syd 41ms
 	 ip address 49.2.0.17/30
-	 exit
 	!
 	interface eth4
 	 description singtel-sin-telstra 4ms
 	 ip address 49.2.0.25/30
-	 exit
 	!
 	interface eth5
 	 description singtel-sin-cpt-vodacom 64ms
 	 ip address 49.2.0.33/30
-	 exit
 	!
 	!interface eth6
 	! description singtel-sin-branch 0ms
 	! ip address 183.90.103.1/24
-	! exit
 	!
 	router bgp 7473
 	 bgp router-id 49.2.0.1
@@ -4974,7 +4421,6 @@ node n139 {
 	 neighbor 49.2.0.18 next-hop-self
 	 neighbor 49.2.0.26 remote-as 1221
 	 neighbor 49.2.0.34 remote-as 36908
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -4985,20 +4431,6 @@ node n139 {
 	ip route 119.0.0.0/8 10.255.255.10
 	ip route 175.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -5045,7 +4477,7 @@ node n140 {
     interface-peer {eth4 n160}
     interface-peer {eth5 n123}
     interface-peer {eth6 n151}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -5055,48 +4487,47 @@ node n140 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.140/24
-	 exit
 	!
 	interface eth1
 	 description singtel-mnl-syd 41ms
 	 ip address 49.2.0.6/30
-	 exit
 	!
 	interface eth2
 	 description singtel-per-syd 21ms
 	 ip address 49.2.0.9/30
-	 exit
 	!
 	interface eth3
 	 description singtel-sin-syd 41ms
 	 ip address 49.2.0.18/30
-	 exit
 	!
 	interface eth4
 	 description singtel-syd-telstra 4ms
 	 ip address 49.2.0.29/30
-	 exit
 	!
 	interface eth5
 	 description singtel-syd-iap3-iap3 55ms
 	 ip address 49.2.0.37/30
-	 exit
 	!
 	interface eth6
 	 description tata-tyo-syd-singtel 52ms
 	 ip address 36.96.0.50/30
-	 exit
 	!
 	!interface eth7
 	! description singtel-syd-branch 0ms
 	! ip address 49.0.8.1/24
-	! exit
 	!
 	router bgp 7473
 	 bgp router-id 49.2.0.6
@@ -5112,7 +4543,6 @@ node n140 {
 	 neighbor 49.2.0.38 remote-as 3475
 	 neighbor 36.96.0.49 remote-as 6453
 	 !neighbor 49.0.8.4 remote-as 7476
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -5121,20 +4551,6 @@ node n140 {
 	ip route 117.0.0.0/8 10.255.255.10
 	ip route 150.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -5173,7 +4589,7 @@ node n141 {
     interface-peer {eth2 n145}
     interface-peer {eth3 n144}
     interface-peer {eth4 n105}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -5183,38 +4599,39 @@ node n141 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.141/24
-	 exit
 	!
 	interface eth1
 	 description sky-hel-lon 12ms
 	 ip address 94.60.0.2/30
-	 exit
 	!
 	interface eth2
 	 description sky-hel-mow 6ms
 	 ip address 94.60.0.5/30
-	 exit
 	!
 	interface eth3
 	 description sky-hel-mrs 15ms
 	 ip address 94.60.0.29/30
-	 exit
 	!
 	interface eth4
 	 description bt-hel-sky 4ms
 	 ip address 77.104.0.34/30
-	 exit
 	!
 	!interface eth5
 	! description sky-hel-branch 0ms
 	! ip address 212.149.223.1/24
-	! exit
 	!
 	router bgp 23994
 	 bgp router-id 94.60.0.2
@@ -5228,7 +4645,6 @@ node n141 {
 	 neighbor 94.60.0.30 next-hop-self
 	 neighbor 77.104.0.33 remote-as 2856
 	 !neighbor 212.149.223.4 remote-as 23996
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -5242,20 +4658,6 @@ node n141 {
 	ip route 194.0.0.0/8 10.255.255.10
 	ip route 212.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -5298,7 +4700,7 @@ node n142 {
     interface-peer {eth3 n166}
     interface-peer {eth4 n106}
     interface-peer {eth5 n103}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -5308,43 +4710,43 @@ node n142 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.142/24
-	 exit
 	!
 	interface eth1
 	 description sky-lis-mrs 8ms
 	 ip address 94.60.0.14/30
-	 exit
 	!
 	interface eth2
 	 description sky-lis-lon 10ms
 	 ip address 94.60.0.17/30
-	 exit
 	!
 	interface eth3
 	 description sky-lis-cai-vodacom 25ms
 	 ip address 94.60.0.45/30
-	 exit
 	!
 	interface eth4
 	 description bt-lis-sky 4ms
 	 ip address 77.104.0.42/30
-	 exit
 	!
 	interface eth5
 	 description americatel-for-lis-sky 37ms
 	 ip address 139.82.0.34/30
-	 exit
 	!
 	!interface eth6
 	! description sky-lis-branch 0ms
 	! ip address 2.82.178.1/24
-	! exit
 	!
 	router bgp 23994
 	 bgp router-id 94.60.0.14
@@ -5357,7 +4759,6 @@ node n142 {
 	 neighbor 94.60.0.46 remote-as 36908
 	 neighbor 77.104.0.41 remote-as 2856
 	 neighbor 139.82.0.33 remote-as 19180
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -5373,20 +4774,6 @@ node n142 {
 	ip route 194.0.0.0/8 10.255.255.10
 	ip route 213.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -5433,7 +4820,7 @@ node n143 {
     interface-peer {eth4 n145}
     interface-peer {eth5 n107}
     interface-peer {eth6 n129}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -5443,48 +4830,47 @@ node n143 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.143/24
-	 exit
 	!
 	interface eth1
 	 description sky-hel-lon 12ms
 	 ip address 94.60.0.1/30
-	 exit
 	!
 	interface eth2
 	 description sky-lis-lon 10ms
 	 ip address 94.60.0.18/30
-	 exit
 	!
 	interface eth3
 	 description sky-lon-mrs 6ms
 	 ip address 94.60.0.21/30
-	 exit
 	!
 	interface eth4
 	 description sky-lon-mow 16ms
 	 ip address 94.60.0.25/30
-	 exit
 	!
 	interface eth5
 	 description sky-lon-bt 4ms
 	 ip address 94.60.0.33/30
-	 exit
 	!
 	interface eth6
 	 description sky-lon-nyc-level3 37ms
 	 ip address 94.60.0.41/30
-	 exit
 	!
 	!interface eth7
 	! description sky-lon-branch 0ms
 	! ip address 131.228.29.1/24
-	! exit
 	!
 	router bgp 23994
 	 bgp router-id 94.60.0.1
@@ -5505,7 +4891,6 @@ node n143 {
 	 neighbor 94.60.0.34 remote-as 2856
 	 neighbor 94.60.0.42 remote-as 3356
 	 !neighbor 131.228.29.4 remote-as 23995
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -5521,20 +4906,6 @@ node n143 {
 	ip route 147.0.0.0/8 10.255.255.10
 	ip route 185.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -5577,7 +4948,7 @@ node n144 {
     interface-peer {eth3 n143}
     interface-peer {eth4 n141}
     interface-peer {eth5 n108}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -5587,43 +4958,43 @@ node n144 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.144/24
-	 exit
 	!
 	interface eth1
 	 description sky-mow-mrs 17ms
 	 ip address 94.60.0.10/30
-	 exit
 	!
 	interface eth2
 	 description sky-lis-mrs 8ms
 	 ip address 94.60.0.13/30
-	 exit
 	!
 	interface eth3
 	 description sky-lon-mrs 6ms
 	 ip address 94.60.0.22/30
-	 exit
 	!
 	interface eth4
 	 description sky-hel-mrs 15ms
 	 ip address 94.60.0.30/30
-	 exit
 	!
 	interface eth5
 	 description bt-mrs-sky 4ms
 	 ip address 77.104.0.38/30
-	 exit
 	!
 	!interface eth6
 	! description sky-mrs-branch 0ms
 	! ip address 195.220.8.1/24
-	! exit
 	!
 	router bgp 23994
 	 bgp router-id 94.60.0.10
@@ -5643,7 +5014,6 @@ node n144 {
 	 neighbor 94.60.0.29 next-hop-self all
 	 neighbor 77.104.0.37 remote-as 2856
 	 !neighbor 195.220.8.4 remote-as 23998
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -5659,20 +5029,6 @@ node n144 {
 	ip route 199.0.0.0/8 10.255.255.10
 	ip route 213.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -5711,7 +5067,7 @@ node n145 {
     interface-peer {eth2 n144}
     interface-peer {eth3 n143}
     interface-peer {eth4 n109}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -5721,38 +5077,39 @@ node n145 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.145/24
-	 exit
 	!
 	interface eth1
 	 description sky-hel-mow 6ms
 	 ip address 94.60.0.6/30
-	 exit
 	!
 	interface eth2
 	 description sky-mow-mrs 17ms
 	 ip address 94.60.0.9/30
-	 exit
 	!
 	interface eth3
 	 description sky-lon-mow 16ms
 	 ip address 94.60.0.26/30
-	 exit
 	!
 	interface eth4
 	 description sky-mow-bt 4ms
 	 ip address 94.60.0.37/30
-	 exit
 	!
 	!interface eth5
 	! description sky-mow-branch 0ms
 	! ip address 109.63.253.1/24
-	! exit
 	!
 	router bgp 23994
 	 bgp router-id 94.60.0.6
@@ -5765,7 +5122,6 @@ node n145 {
 	 neighbor 94.60.0.25 remote-as 23994
 	 neighbor 94.60.0.25 next-hop-self
 	 neighbor 94.60.0.38 remote-as 2856
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -5778,20 +5134,6 @@ node n145 {
 	ip route 194.0.0.0/8 10.255.255.10
 	ip route 217.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -5838,7 +5180,7 @@ node n146 {
     interface-peer {eth4 n147}
     interface-peer {eth5 n151}
     interface-peer {eth6 n131}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -5848,48 +5190,47 @@ node n146 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.146/24
-	 exit
 	!
 	interface eth1
 	 description tata-bjs-kja 16ms
 	 ip address 36.96.0.2/30
-	 exit
 	!
 	interface eth2
 	 description tata-bjs-sel 6ms
 	 ip address 36.96.0.5/30
-	 exit
 	!
 	interface eth3
 	 description tata-bjs-bom 31ms
 	 ip address 36.96.0.22/30
-	 exit
 	!
 	interface eth4
 	 description tata-bjs-hkg 13ms
 	 ip address 36.96.0.25/30
-	 exit
 	!
 	interface eth5
 	 description tata-bjs-tyo 13ms
 	 ip address 36.96.0.29/30
-	 exit
 	!
 	interface eth6
 	 description tata-bjs-pacnet 4ms
 	 ip address 36.96.0.37/30
-	 exit
 	!
 	!interface eth7
 	! description tata-bjs-branch 0ms
 	! ip address 112.20.190.1/24
-	! exit
 	!
 	router bgp 6453
 	 bgp router-id 36.96.0.2
@@ -5913,7 +5254,6 @@ node n146 {
 	 neighbor 36.96.0.30 next-hop-self all
 	 neighbor 36.96.0.38 remote-as 10026
 	 !neighbor 112.20.190.4 remote-as 6455
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -5928,20 +5268,6 @@ node n146 {
 	ip route 221.0.0.0/8 10.255.255.10
 	ip route 222.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -5988,7 +5314,7 @@ node n147 {
     interface-peer {eth4 n150}
     interface-peer {eth5 n137}
     interface-peer {eth6 n132}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -5998,48 +5324,47 @@ node n147 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.147/24
-	 exit
 	!
 	interface eth1
 	 description tata-hkg-tyo 19ms
 	 ip address 36.96.0.14/30
-	 exit
 	!
 	interface eth2
 	 description tata-bom-hkg 28ms
 	 ip address 36.96.0.17/30
-	 exit
 	!
 	interface eth3
 	 description tata-bjs-hkg 13ms
 	 ip address 36.96.0.26/30
-	 exit
 	!
 	interface eth4
 	 description tata-hkg-sel 13ms
 	 ip address 36.96.0.34/30
-	 exit
 	!
 	interface eth5
 	 description tata-hkg-mnl-singtel 7ms
 	 ip address 36.96.0.53/30
-	 exit
 	!
 	interface eth6
 	 description pacnet-hkg-tata 4ms
 	 ip address 114.144.0.46/30
-	 exit
 	!
 	!interface eth7
 	! description tata-hkg-branch 0ms
 	! ip address 153.92.43.1/24
-	! exit
 	!
 	router bgp 6453
 	 bgp router-id 36.96.0.14
@@ -6056,7 +5381,6 @@ node n147 {
 	 neighbor 36.96.0.54 remote-as 7473
 	 neighbor 114.144.0.45 remote-as 10026
 	 !neighbor 153.92.43.4 remote-as 6458
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -6070,20 +5394,6 @@ node n147 {
 	ip route 219.0.0.0/8 10.255.255.10
 	ip route 222.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -6114,7 +5424,7 @@ node n148 {
     interface-peer {eth0 n300}
     interface-peer {eth1 n146}
     interface-peer {eth2 n133}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -6124,28 +5434,31 @@ node n148 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.148/24
-	 exit
 	!
 	interface eth1
 	 description tata-bjs-kja 16ms
 	 ip address 36.96.0.1/30
-	 exit
 	!
 	interface eth2
 	 description pacnet-kja-tata 4ms
 	 ip address 114.144.0.38/30
-	 exit
 	!
 	!interface eth3
 	! description tata-kja-branch 0ms
 	! ip address 178.169.97.1/24
-	! exit
 	!
 	router bgp 6453
 	 bgp router-id 36.96.0.1
@@ -6154,7 +5467,6 @@ node n148 {
 	 neighbor 36.96.0.2 remote-as 6453
 	 neighbor 36.96.0.2 next-hop-self
 	 neighbor 114.144.0.37 remote-as 10026
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -6162,20 +5474,6 @@ node n148 {
 	ip route 193.0.0.0/8 10.255.255.10
 	ip route 212.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -6214,7 +5512,7 @@ node n149 {
     interface-peer {eth2 n146}
     interface-peer {eth3 n134}
     interface-peer {eth4 n168}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -6224,38 +5522,39 @@ node n149 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.149/24
-	 exit
 	!
 	interface eth1
 	 description tata-bom-hkg 28ms
 	 ip address 36.96.0.18/30
-	 exit
 	!
 	interface eth2
 	 description tata-bjs-bom 31ms
 	 ip address 36.96.0.21/30
-	 exit
 	!
 	interface eth3
 	 description tata-bom-pacnet 4ms
 	 ip address 36.96.0.45/30
-	 exit
 	!
 	interface eth4
 	 description tata-bom-jib-vodacom 21ms
 	 ip address 36.96.0.57/30
-	 exit
 	!
 	!interface eth5
 	! description tata-bom-branch 0ms
 	! ip address 206.183.111.1/24
-	! exit
 	!
 	router bgp 6453
 	 bgp router-id 36.96.0.18
@@ -6267,7 +5566,6 @@ node n149 {
 	 neighbor 36.96.0.22 next-hop-self
 	 neighbor 36.96.0.46 remote-as 10026
 	 neighbor 36.96.0.58 remote-as 36908
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -6277,20 +5575,6 @@ node n149 {
 	ip route 202.0.0.0/8 10.255.255.10
 	ip route 223.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -6329,7 +5613,7 @@ node n150 {
     interface-peer {eth2 n151}
     interface-peer {eth3 n147}
     interface-peer {eth4 n135}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -6339,38 +5623,39 @@ node n150 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.150/24
-	 exit
 	!
 	interface eth1
 	 description tata-bjs-sel 6ms
 	 ip address 36.96.0.6/30
-	 exit
 	!
 	interface eth2
 	 description tata-sel-tyo 7ms
 	 ip address 36.96.0.9/30
-	 exit
 	!
 	interface eth3
 	 description tata-hkg-sel 13ms
 	 ip address 36.96.0.33/30
-	 exit
 	!
 	interface eth4
 	 description pacnet-sel-tata 4ms
 	 ip address 114.144.0.42/30
-	 exit
 	!
 	!interface eth5
 	! description tata-sel-branch 0ms
 	! ip address 14.63.19.1/24
-	! exit
 	!
 	router bgp 6453
 	 bgp router-id 36.96.0.6
@@ -6383,7 +5668,6 @@ node n150 {
 	 neighbor 36.96.0.34 remote-as 6453
 	 neighbor 36.96.0.34 next-hop-self
 	 neighbor 114.144.0.41 remote-as 10026
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -6396,20 +5680,6 @@ node n150 {
 	ip route 211.0.0.0/8 10.255.255.10
 	ip route 219.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -6456,7 +5726,7 @@ node n151 {
     interface-peer {eth4 n136}
     interface-peer {eth5 n140}
     interface-peer {eth6 n32}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -6466,48 +5736,47 @@ node n151 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.151/24
-	 exit
 	!
 	interface eth1
 	 description tata-sel-tyo 7ms
 	 ip address 36.96.0.10/30
-	 exit
 	!
 	interface eth2
 	 description tata-hkg-tyo 19ms
 	 ip address 36.96.0.13/30
-	 exit
 	!
 	interface eth3
 	 description tata-bjs-tyo 13ms
 	 ip address 36.96.0.30/30
-	 exit
 	!
 	interface eth4
 	 description tata-tyo-pacnet 4ms
 	 ip address 36.96.0.41/30
-	 exit
 	!
 	interface eth5
 	 description tata-tyo-syd-singtel 52ms
 	 ip address 36.96.0.49/30
-	 exit
 	!
 	interface eth6
 	 description level3-lax-tyo-tata 58ms
 	 ip address 24.111.0.62/30
-	 exit
 	!
 	!interface eth7
 	! description tata-tyo-branch 0ms
 	! ip address 114.160.71.1/24
-	! exit
 	!
 	router bgp 6453
 	 bgp router-id 36.96.0.10
@@ -6522,7 +5791,6 @@ node n151 {
 	 neighbor 36.96.0.42 remote-as 10026
 	 neighbor 36.96.0.50 remote-as 7473
 	 neighbor 24.111.0.61 remote-as 3356
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -6539,20 +5807,6 @@ node n151 {
 	ip route 211.0.0.0/8 10.255.255.10
 	ip route 221.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -6595,7 +5849,7 @@ node n152 {
     interface-peer {eth3 n155}
     interface-peer {eth4 n165}
     interface-peer {eth5 n163}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -6605,43 +5859,43 @@ node n152 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.152/24
-	 exit
 	!
 	interface eth1
 	 description tedata-abj-cai 30ms
 	 ip address 95.212.0.2/30
-	 exit
 	!
 	interface eth2
 	 description tedata-abj-cpt 33ms
 	 ip address 95.212.0.5/30
-	 exit
 	!
 	interface eth3
 	 description tedata-abj-jib 34ms
 	 ip address 95.212.0.29/30
-	 exit
 	!
 	interface eth4
 	 description tedata-abj-vodacom 4ms
 	 ip address 95.212.0.33/30
-	 exit
 	!
 	interface eth5
 	 description terra-for-abj-tedata 26ms
 	 ip address 143.54.0.34/30
-	 exit
 	!
 	!interface eth6
 	! description tedata-abj-branch 0ms
 	! ip address 213.136.113.1/24
-	! exit
 	!
 	router bgp 8452
 	 bgp router-id 95.212.0.2
@@ -6655,26 +5909,11 @@ node n152 {
 	 neighbor 95.212.0.30 next-hop-self
 	 neighbor 95.212.0.34 remote-as 36908
 	 neighbor 143.54.0.33 remote-as 40260
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
 	ip route 93.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -6721,7 +5960,7 @@ node n153 {
     interface-peer {eth4 n154}
     interface-peer {eth5 n108}
     interface-peer {eth6 n166}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -6731,48 +5970,47 @@ node n153 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.153/24
-	 exit
 	!
 	interface eth1
 	 description tedata-abj-cai 30ms
 	 ip address 95.212.0.1/30
-	 exit
 	!
 	interface eth2
 	 description tedata-cai-dxb 16ms
 	 ip address 95.212.0.18/30
-	 exit
 	!
 	interface eth3
 	 description tedata-cai-jib 15ms
 	 ip address 95.212.0.21/30
-	 exit
 	!
 	interface eth4
 	 description tedata-cai-cpt 48ms
 	 ip address 95.212.0.25/30
-	 exit
 	!
 	interface eth5
 	 description tedata-cai-mrs-bt 18ms
 	 ip address 95.212.0.45/30
-	 exit
 	!
 	interface eth6
 	 description vodacom-cai-tedata 4ms
 	 ip address 155.11.0.34/30
-	 exit
 	!
 	!interface eth7
 	! description tedata-cai-branch 0ms
 	! ip address 163.121.188.1/24
-	! exit
 	!
 	router bgp 8452
 	 bgp router-id 95.212.0.1
@@ -6792,7 +6030,6 @@ node n153 {
 	 neighbor 95.212.0.26 next-hop-self all
 	 neighbor 95.212.0.46 remote-as 2856
 	 neighbor 155.11.0.33 remote-as 36908
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -6803,20 +6040,6 @@ node n153 {
 	ip route 95.0.0.0/8 10.255.255.10
 	ip route 197.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -6855,7 +6078,7 @@ node n154 {
     interface-peer {eth2 n155}
     interface-peer {eth3 n153}
     interface-peer {eth4 n167}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -6865,38 +6088,39 @@ node n154 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.154/24
-	 exit
 	!
 	interface eth1
 	 description tedata-abj-cpt 33ms
 	 ip address 95.212.0.6/30
-	 exit
 	!
 	interface eth2
 	 description tedata-cpt-jib 37ms
 	 ip address 95.212.0.9/30
-	 exit
 	!
 	interface eth3
 	 description tedata-cai-cpt 48ms
 	 ip address 95.212.0.26/30
-	 exit
 	!
 	interface eth4
 	 description vodacom-cpt-tedata 4ms
 	 ip address 155.11.0.38/30
-	 exit
 	!
 	!interface eth5
 	! description tedata-cpt-branch 0ms
 	! ip address 105.228.93.1/24
-	! exit
 	!
 	router bgp 8452
 	 bgp router-id 95.212.0.6
@@ -6910,27 +6134,12 @@ node n154 {
 	 neighbor 95.212.0.25 next-hop-self
 	 neighbor 155.11.0.37 remote-as 36908
 	 !neighbor 105.228.93.4 remote-as 8455
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
 	ip route 41.0.0.0/8 10.255.255.10
 	ip route 196.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -6973,7 +6182,7 @@ node n155 {
     interface-peer {eth3 n153}
     interface-peer {eth4 n152}
     interface-peer {eth5 n168}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -6983,43 +6192,43 @@ node n155 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.155/24
-	 exit
 	!
 	interface eth1
 	 description tedata-cpt-jib 37ms
 	 ip address 95.212.0.10/30
-	 exit
 	!
 	interface eth2
 	 description tedata-dxb-jib 13ms
 	 ip address 95.212.0.13/30
-	 exit
 	!
 	interface eth3
 	 description tedata-cai-jib 15ms
 	 ip address 95.212.0.22/30
-	 exit
 	!
 	interface eth4
 	 description tedata-abj-jib 34ms
 	 ip address 95.212.0.30/30
-	 exit
 	!
 	interface eth5
 	 description tedata-jib-vodacom 4ms
 	 ip address 95.212.0.37/30
-	 exit
 	!
 	!interface eth6
 	! description tedata-jib-branch 0ms
 	! ip address 41.189.254.1/24
-	! exit
 	!
 	router bgp 8452
 	 bgp router-id 95.212.0.10
@@ -7038,26 +6247,11 @@ node n155 {
 	 neighbor 95.212.0.29 route-reflector-client
 	 neighbor 95.212.0.29 next-hop-self all
 	 neighbor 95.212.0.38 remote-as 36908
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
 	ip route 196.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -7096,7 +6290,7 @@ node n156 {
     interface-peer {eth2 n153}
     interface-peer {eth3 n169}
     interface-peer {eth4 n134}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -7106,38 +6300,39 @@ node n156 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.156/24
-	 exit
 	!
 	interface eth1
 	 description tedata-dxb-jib 13ms
 	 ip address 95.212.0.14/30
-	 exit
 	!
 	interface eth2
 	 description tedata-cai-dxb 16ms
 	 ip address 95.212.0.17/30
-	 exit
 	!
 	interface eth3
 	 description tedata-dxb-vodacom 4ms
 	 ip address 95.212.0.41/30
-	 exit
 	!
 	interface eth4
 	 description tedata-dxb-bom-pacnet 12ms
 	 ip address 95.212.0.49/30
-	 exit
 	!
 	!interface eth5
 	! description tedata-dxb-branch 0ms
 	! ip address 94.201.0.1/24
-	! exit
 	!
 	router bgp 8452
 	 bgp router-id 95.212.0.14
@@ -7149,7 +6344,6 @@ node n156 {
 	 neighbor 95.212.0.18 next-hop-self
 	 neighbor 95.212.0.42 remote-as 36908
 	 neighbor 95.212.0.50 remote-as 10026
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -7157,20 +6351,6 @@ node n156 {
 	ip route 86.0.0.0/8 10.255.255.10
 	ip route 109.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -7209,7 +6389,7 @@ node n157 {
     interface-peer {eth2 n160}
     interface-peer {eth3 n158}
     interface-peer {eth4 n137}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -7219,38 +6399,39 @@ node n157 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.157/24
-	 exit
 	!
 	interface eth1
 	 description telstra-mnl-sin 15ms
 	 ip address 110.20.0.2/30
-	 exit
 	!
 	interface eth2
 	 description telstra-mnl-syd 41ms
 	 ip address 110.20.0.5/30
-	 exit
 	!
 	interface eth3
 	 description telstra-mnl-per 34ms
 	 ip address 110.20.0.21/30
-	 exit
 	!
 	interface eth4
 	 description telstra-mnl-singtel 4ms
 	 ip address 110.20.0.25/30
-	 exit
 	!
 	!interface eth5
 	! description telstra-mnl-branch 0ms
 	! ip address 125.60.156.1/24
-	! exit
 	!
 	router bgp 1221
 	 bgp router-id 110.20.0.2
@@ -7263,7 +6444,6 @@ node n157 {
 	 neighbor 110.20.0.22 remote-as 1221
 	 neighbor 110.20.0.22 next-hop-self
 	 neighbor 110.20.0.26 remote-as 7473
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -7273,20 +6453,6 @@ node n157 {
 	ip route 123.0.0.0/8 10.255.255.10
 	ip route 203.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -7325,7 +6491,7 @@ node n158 {
     interface-peer {eth2 n159}
     interface-peer {eth3 n157}
     interface-peer {eth4 n138}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -7335,38 +6501,39 @@ node n158 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.158/24
-	 exit
 	!
 	interface eth1
 	 description telstra-per-syd 21ms
 	 ip address 110.20.0.10/30
-	 exit
 	!
 	interface eth2
 	 description telstra-per-sin 25ms
 	 ip address 110.20.0.13/30
-	 exit
 	!
 	interface eth3
 	 description telstra-mnl-per 34ms
 	 ip address 110.20.0.22/30
-	 exit
 	!
 	interface eth4
 	 description telstra-per-singtel 4ms
 	 ip address 110.20.0.29/30
-	 exit
 	!
 	!interface eth5
 	! description telstra-per-branch 0ms
 	! ip address 27.54.92.1/24
-	! exit
 	!
 	router bgp 1221
 	 bgp router-id 110.20.0.10
@@ -7379,7 +6546,6 @@ node n158 {
 	 neighbor 110.20.0.21 remote-as 1221
 	 neighbor 110.20.0.21 next-hop-self
 	 neighbor 110.20.0.30 remote-as 7473
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -7388,20 +6554,6 @@ node n158 {
 	ip route 115.0.0.0/8 10.255.255.10
 	ip route 203.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -7448,7 +6600,7 @@ node n159 {
     interface-peer {eth4 n132}
     interface-peer {eth5 n139}
     interface-peer {eth6 n134}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -7458,48 +6610,47 @@ node n159 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.159/24
-	 exit
 	!
 	interface eth1
 	 description telstra-mnl-sin 15ms
 	 ip address 110.20.0.1/30
-	 exit
 	!
 	interface eth2
 	 description telstra-per-sin 25ms
 	 ip address 110.20.0.14/30
-	 exit
 	!
 	interface eth3
 	 description telstra-sin-syd 41ms
 	 ip address 110.20.0.17/30
-	 exit
 	!
 	interface eth4
 	 description telstra-sin-hkg-pacnet 17ms
 	 ip address 110.20.0.33/30
-	 exit
 	!
 	interface eth5
 	 description singtel-sin-telstra 4ms
 	 ip address 49.2.0.26/30
-	 exit
 	!
 	interface eth6
 	 description pacnet-bom-sin-telstra 26ms
 	 ip address 114.144.0.54/30
-	 exit
 	!
 	!interface eth7
 	! description telstra-sin-branch 0ms
 	! ip address 220.255.1.1/24
-	! exit
 	!
 	router bgp 1221
 	 bgp router-id 110.20.0.1
@@ -7514,7 +6665,6 @@ node n159 {
 	 neighbor 110.20.0.34 remote-as 10026
 	 neighbor 49.2.0.25 remote-as 7473
 	 neighbor 114.144.0.53 remote-as 10026
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -7524,20 +6674,6 @@ node n159 {
 	ip route 116.0.0.0/8 10.255.255.10
 	ip route 120.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -7580,7 +6716,7 @@ node n160 {
     interface-peer {eth3 n159}
     interface-peer {eth4 n140}
     interface-peer {eth5 n12}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -7590,43 +6726,43 @@ node n160 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.160/24
-	 exit
 	!
 	interface eth1
 	 description telstra-mnl-syd 41ms
 	 ip address 110.20.0.6/30
-	 exit
 	!
 	interface eth2
 	 description telstra-per-syd 21ms
 	 ip address 110.20.0.9/30
-	 exit
 	!
 	interface eth3
 	 description telstra-sin-syd 41ms
 	 ip address 110.20.0.18/30
-	 exit
 	!
 	interface eth4
 	 description singtel-syd-telstra 4ms
 	 ip address 49.2.0.30/30
-	 exit
 	!
 	interface eth5
 	 description centurylink-lax-syd-telstra 80ms
 	 ip address 50.128.0.66/30
-	 exit
 	!
 	!interface eth6
 	! description telstra-syd-branch 0ms
 	! ip address 140.168.135.1/24
-	! exit
 	!
 	router bgp 1221
 	 bgp router-id 110.20.0.6
@@ -7643,7 +6779,6 @@ node n160 {
 	 !neighbor 140.168.135.2 remote-as 9466
 	 !neighbor 140.168.135.3 remote-as 4768
 	 !neighbor 140.168.135.4 remote-as 1224
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -7652,20 +6787,6 @@ node n160 {
 	ip route 125.0.0.0/8 10.255.255.10
 	ip route 198.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -7704,7 +6825,7 @@ node n161 {
     interface-peer {eth2 n164}
     interface-peer {eth3 n162}
     interface-peer {eth4 n101}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -7714,38 +6835,39 @@ node n161 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.161/24
-	 exit
 	!
 	interface eth1
 	 description terra-bog-for 27ms
 	 ip address 143.54.0.1/30
-	 exit
 	!
 	interface eth2
 	 description terra-bog-lim 12ms
 	 ip address 143.54.0.14/30
-	 exit
 	!
 	interface eth3
 	 description terra-bai-bog 7ms
 	 ip address 143.54.0.17/30
-	 exit
 	!
 	interface eth4
 	 description americatel-bog-terra 4ms
 	 ip address 139.82.0.26/30
-	 exit
 	!
 	!interface eth5
 	! description terra-bog-branch 0ms
 	! ip address 167.7.110.1/24
-	! exit
 	!
 	router bgp 40260
 	 bgp router-id 143.54.0.1
@@ -7758,27 +6880,12 @@ node n161 {
 	 neighbor 143.54.0.18 remote-as 40260
 	 neighbor 143.54.0.18 next-hop-self
 	 neighbor 139.82.0.25 remote-as 19180
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
 	ip route 190.0.0.0/8 10.255.255.10
 	ip route 200.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -7818,7 +6925,7 @@ node n162 {
     interface-peer {eth3 n161}
     interface-peer {eth4 n102}
     interface-peer {eth5 n501}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -7828,38 +6935,39 @@ node n162 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.162/24
-	 exit
 	!
 	interface eth1
 	 description terra-bai-for 34ms
 	 ip address 143.54.0.6/30
-	 exit
 	!
 	interface eth2
 	 description terra-bai-lim 16ms
 	 ip address 143.54.0.9/30
-	 exit
 	!
 	interface eth3
 	 description terra-bai-bog 7ms
 	 ip address 143.54.0.18/30
-	 exit
 	!
 	interface eth4
 	 description americatel-bai-terra 4ms
 	 ip address 139.82.0.30/30
-	 exit
 	!
 	interface eth5
 	 description onion1-network
 	 ip address 186.129.255.1/24
-	 exit
 	!
 	router bgp 40260
 	 bgp router-id 143.54.0.6
@@ -7873,7 +6981,6 @@ node n162 {
 	 neighbor 143.54.0.17 next-hop-self
 	 neighbor 139.82.0.29 remote-as 19180
 	 !neighbor 186.129.255.4 remote-as 40263
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -7881,20 +6988,6 @@ node n162 {
 	ip route 198.0.0.0/8 10.255.255.10
 	ip route 201.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -7941,7 +7034,7 @@ node n163 {
     interface-peer {eth4 n103}
     interface-peer {eth5 n152}
     interface-peer {eth6 n114}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -7951,48 +7044,47 @@ node n163 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.163/24
-	 exit
 	!
 	interface eth1
 	 description terra-bog-for 27ms
 	 ip address 143.54.0.2/30
-	 exit
 	!
 	interface eth2
 	 description terra-bai-for 34ms
 	 ip address 143.54.0.5/30
-	 exit
 	!
 	interface eth3
 	 description terra-for-lim 28ms
 	 ip address 143.54.0.21/30
-	 exit
 	!
 	interface eth4
 	 description terra-for-americatel 4ms
 	 ip address 143.54.0.25/30
-	 exit
 	!
 	interface eth5
 	 description terra-for-abj-tedata 26ms
 	 ip address 143.54.0.33/30
-	 exit
 	!
 	interface eth6
 	 description centurylink-nyc-for-terra 40ms
 	 ip address 50.128.0.62/30
-	 exit
 	!
 	!interface eth7
 	! description terra-for-branch 0ms
 	! ip address 189.90.160.1/24
-	! exit
 	!
 	router bgp 40260
 	 bgp router-id 143.54.0.2
@@ -8007,7 +7099,6 @@ node n163 {
 	 neighbor 143.54.0.26 remote-as 19180
 	 neighbor 143.54.0.34 remote-as 8452
 	 neighbor 50.128.0.61 remote-as 1456
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -8015,20 +7106,6 @@ node n163 {
 	ip route 191.0.0.0/8 10.255.255.10
 	ip route 201.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -8071,7 +7148,7 @@ node n164 {
     interface-peer {eth3 n163}
     interface-peer {eth4 n104}
     interface-peer {eth5 n111}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -8081,43 +7158,43 @@ node n164 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.164/24
-	 exit
 	!
 	interface eth1
 	 description terra-bai-lim 16ms
 	 ip address 143.54.0.10/30
-	 exit
 	!
 	interface eth2
 	 description terra-bog-lim 12ms
 	 ip address 143.54.0.13/30
-	 exit
 	!
 	interface eth3
 	 description terra-for-lim 28ms
 	 ip address 143.54.0.22/30
-	 exit
 	!
 	interface eth4
 	 description terra-lim-americatel 4ms
 	 ip address 143.54.0.29/30
-	 exit
 	!
 	interface eth5
 	 description terra-lim-lax-centurylink 44ms
 	 ip address 143.54.0.37/30
-	 exit
 	!
 	!interface eth6
 	! description terra-lim-branch 0ms
 	! ip address 200.48.103.1/24
-	! exit
 	!
 	router bgp 40260
 	 bgp router-id 143.54.0.10
@@ -8131,27 +7208,12 @@ node n164 {
 	 neighbor 143.54.0.21 next-hop-self
 	 neighbor 143.54.0.30 remote-as 19180
 	 neighbor 143.54.0.38 remote-as 1456
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
 	ip route 49.0.0.0/8 10.255.255.10
 	ip route 190.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -8190,7 +7252,7 @@ node n165 {
     interface-peer {eth2 n167}
     interface-peer {eth3 n168}
     interface-peer {eth4 n152}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -8200,38 +7262,39 @@ node n165 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.165/24
-	 exit
 	!
 	interface eth1
 	 description vodacom-abj-cai 30ms
 	 ip address 155.11.0.2/30
-	 exit
 	!
 	interface eth2
 	 description vodacom-abj-cpt 33ms
 	 ip address 155.11.0.5/30
-	 exit
 	!
 	interface eth3
 	 description vodacom-abj-jib 34ms
 	 ip address 155.11.0.29/30
-	 exit
 	!
 	interface eth4
 	 description tedata-abj-vodacom 4ms
 	 ip address 95.212.0.34/30
-	 exit
 	!
 	!interface eth5
 	! description vodacom-abj-branch 0ms
 	! ip address 41.66.28.1/24
-	! exit
 	!
 	router bgp 36908
 	 bgp router-id 155.11.0.2
@@ -8244,26 +7307,11 @@ node n165 {
 	 neighbor 155.11.0.30 remote-as 36908
 	 neighbor 155.11.0.30 next-hop-self
 	 neighbor 95.212.0.33 remote-as 8452
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
 	ip route 196.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -8310,7 +7358,7 @@ node n166 {
     interface-peer {eth4 n167}
     interface-peer {eth5 n153}
     interface-peer {eth6 n142}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -8320,48 +7368,47 @@ node n166 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.166/24
-	 exit
 	!
 	interface eth1
 	 description vodacom-abj-cai 30ms
 	 ip address 155.11.0.1/30
-	 exit
 	!
 	interface eth2
 	 description vodacom-cai-dxb 16ms
 	 ip address 155.11.0.18/30
-	 exit
 	!
 	interface eth3
 	 description vodacom-cai-jib 15ms
 	 ip address 155.11.0.21/30
-	 exit
 	!
 	interface eth4
 	 description vodacom-cai-cpt 48ms
 	 ip address 155.11.0.25/30
-	 exit
 	!
 	interface eth5
 	 description vodacom-cai-tedata 4ms
 	 ip address 155.11.0.33/30
-	 exit
 	!
 	interface eth6
 	 description sky-lis-cai-vodacom 25ms
 	 ip address 94.60.0.46/30
-	 exit
 	!
 	!interface eth7
 	! description vodacom-cai-branch 0ms
 	! ip address 41.38.121.1/24
-	! exit
 	!
 	router bgp 36908
 	 bgp router-id 155.11.0.1
@@ -8382,7 +7429,6 @@ node n166 {
 	 neighbor 155.11.0.34 remote-as 8452
 	 neighbor 94.60.0.45 remote-as 23994
 	 !neighbor 41.38.121.4 remote-as 36909
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -8392,20 +7438,6 @@ node n166 {
 	ip route 93.0.0.0/8 10.255.255.10
 	ip route 109.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -8449,7 +7481,7 @@ node n167 {
     interface-peer {eth4 n154}
     interface-peer {eth5 n139}
     interface-peer {eth6 n502}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -8459,43 +7491,43 @@ node n167 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.167/24
-	 exit
 	!
 	interface eth1
 	 description vodacom-abj-cpt 33ms
 	 ip address 155.11.0.6/30
-	 exit
 	!
 	interface eth2
 	 description vodacom-cpt-jib 37ms
 	 ip address 155.11.0.9/30
-	 exit
 	!
 	interface eth3
 	 description vodacom-cai-cpt 48ms
 	 ip address 155.11.0.26/30
-	 exit
 	!
 	interface eth4
 	 description vodacom-cpt-tedata 4ms
 	 ip address 155.11.0.37/30
-	 exit
 	!
 	interface eth5
 	 description singtel-sin-cpt-vodacom 64ms
 	 ip address 49.2.0.34/30
-	 exit
 	!
 	interface eth6
 	 description onion2-network
 	 ip address 164.151.4.1/24
-	 exit
 	!
 	router bgp 36908
 	 bgp router-id 155.11.0.6
@@ -8510,7 +7542,6 @@ node n167 {
 	 neighbor 155.11.0.38 remote-as 8452
 	 neighbor 49.2.0.33 remote-as 7473
 	 !neighbor 164.151.4.4 remote-as 36911
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
@@ -8518,20 +7549,6 @@ node n167 {
 	ip route 41.0.0.0/8 10.255.255.10
 	ip route 197.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -8578,7 +7595,7 @@ node n168 {
     interface-peer {eth4 n165}
     interface-peer {eth5 n155}
     interface-peer {eth6 n149}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -8588,48 +7605,47 @@ node n168 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.168/24
-	 exit
 	!
 	interface eth1
 	 description vodacom-cpt-jib 37ms
 	 ip address 155.11.0.10/30
-	 exit
 	!
 	interface eth2
 	 description vodacom-dxb-jib 13ms
 	 ip address 155.11.0.13/30
-	 exit
 	!
 	interface eth3
 	 description vodacom-cai-jib 15ms
 	 ip address 155.11.0.22/30
-	 exit
 	!
 	interface eth4
 	 description vodacom-abj-jib 34ms
 	 ip address 155.11.0.30/30
-	 exit
 	!
 	interface eth5
 	 description tedata-jib-vodacom 4ms
 	 ip address 95.212.0.38/30
-	 exit
 	!
 	interface eth6
 	 description tata-bom-jib-vodacom 21ms
 	 ip address 36.96.0.58/30
-	 exit
 	!
 	!interface eth7
 	! description vodacom-jib-branch 0ms
 	! ip address 193.21.143.1/24
-	! exit
 	!
 	router bgp 36908
 	 bgp router-id 155.11.0.10
@@ -8649,27 +7665,12 @@ node n168 {
 	 neighbor 155.11.0.29 next-hop-self all
 	 neighbor 95.212.0.37 remote-as 8452
 	 neighbor 36.96.0.57 remote-as 6453
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
 	ip route 41.0.0.0/8 10.255.255.10
 	ip route 197.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
@@ -8704,7 +7705,7 @@ node n169 {
     interface-peer {eth1 n168}
     interface-peer {eth2 n166}
     interface-peer {eth3 n156}
-    services {zebra BGP IPForward UserDefined}
+    services {FRRzebra FRRBGP IPForward UserDefined}
     custom-config {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
@@ -8714,33 +7715,35 @@ node n169 {
 	}
     }
     custom-config {
-	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
-	custom-command /usr/local/etc/quagga/Quagga.conf
+	custom-config-id service:FRRzebra
+	custom-command FRRzebra
+	config {
+	files=('/usr/local/etc/frr/frr.conf', 'frrboot.sh', '/usr/local/etc/frr/vtysh.conf', '/usr/local/etc/frr/daemons', )
+	}
+    }
+    custom-config {
+	custom-config-id service:FRRzebra:/usr/local/etc/frr/frr.conf
+	custom-command /usr/local/etc/frr/frr.conf
 	config {
 	interface eth0
 	 description topgen lan segment
 	 ip address 10.255.255.169/24
-	 exit
 	!
 	interface eth1
 	 description vodacom-dxb-jib 13ms
 	 ip address 155.11.0.14/30
-	 exit
 	!
 	interface eth2
 	 description vodacom-cai-dxb 16ms
 	 ip address 155.11.0.17/30
-	 exit
 	!
 	interface eth3
 	 description tedata-dxb-vodacom 4ms
 	 ip address 95.212.0.42/30
-	 exit
 	!
 	!interface eth4
 	! description vodacom-dxb-branch 0ms
 	! ip address 195.229.241.1/24
-	! exit
 	!
 	router bgp 36908
 	 bgp router-id 155.11.0.14
@@ -8751,27 +7754,12 @@ node n169 {
 	 neighbor 155.11.0.18 remote-as 36908
 	 neighbor 155.11.0.18 next-hop-self
 	 neighbor 95.212.0.41 remote-as 8452
-	 exit
 	!
 	ip route 0.0.0.0/0 10.255.255.10
 	!
 	ip route 82.0.0.0/8 10.255.255.10
 	ip route 95.0.0.0/8 10.255.255.10
 	!
-	ip forwarding
-	!
-	end
-	}
-    }
-    custom-config {
-	custom-config-id service:zebra
-	custom-command zebra
-	config {
-	('/usr/local/etc/quagga', '/var/run/quagga')
-	('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh')
-	35
-	('sh quaggaboot.sh zebra',)
-	('killall zebra',)
 	}
     }
     custom-image /usr/share/greybox/clipart/tnyrtr.gif
