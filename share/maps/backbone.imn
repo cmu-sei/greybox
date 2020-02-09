@@ -62,7 +62,7 @@ node n101 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -175,7 +175,7 @@ node n102 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -297,7 +297,7 @@ node n103 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -424,7 +424,7 @@ node n104 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -538,7 +538,7 @@ node n105 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -659,7 +659,7 @@ node n106 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -788,7 +788,7 @@ node n107 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -938,7 +938,7 @@ node n108 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -1081,7 +1081,7 @@ node n109 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -1214,7 +1214,7 @@ node n110 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -1372,7 +1372,7 @@ node n111 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -1522,7 +1522,7 @@ node n112 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -1672,7 +1672,7 @@ node n113 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -1827,7 +1827,7 @@ node n114 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -1968,7 +1968,7 @@ node n115 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -2104,7 +2104,7 @@ node n116 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -2223,7 +2223,7 @@ node n117 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -2341,7 +2341,7 @@ node n118 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -2460,7 +2460,7 @@ node n119 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -2579,7 +2579,7 @@ node n120 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -2688,7 +2688,7 @@ node n121 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -2772,7 +2772,7 @@ node n122 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -2851,7 +2851,7 @@ node n123 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -2934,7 +2934,7 @@ node n124 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -3037,7 +3037,7 @@ node n125 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -3190,7 +3190,7 @@ node n126 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -3331,7 +3331,7 @@ node n127 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -3474,7 +3474,7 @@ node n128 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -3630,7 +3630,7 @@ node n129 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -3773,7 +3773,7 @@ node n130 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -3910,7 +3910,7 @@ node n131 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -4059,7 +4059,7 @@ node n132 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -4188,7 +4188,7 @@ node n133 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -4298,7 +4298,7 @@ node n134 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -4419,7 +4419,7 @@ node n135 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -4542,7 +4542,7 @@ node n136 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -4675,7 +4675,7 @@ node n137 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -4798,7 +4798,7 @@ node n138 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -4918,7 +4918,7 @@ node n139 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -5049,7 +5049,7 @@ node n140 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -5177,7 +5177,7 @@ node n141 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -5302,7 +5302,7 @@ node n142 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -5437,7 +5437,7 @@ node n143 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -5581,7 +5581,7 @@ node n144 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -5715,7 +5715,7 @@ node n145 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -5842,7 +5842,7 @@ node n146 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -5992,7 +5992,7 @@ node n147 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -6118,7 +6118,7 @@ node n148 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -6218,7 +6218,7 @@ node n149 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -6333,7 +6333,7 @@ node n150 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -6460,7 +6460,7 @@ node n151 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -6599,7 +6599,7 @@ node n152 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -6725,7 +6725,7 @@ node n153 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -6859,7 +6859,7 @@ node n154 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -6977,7 +6977,7 @@ node n155 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -7100,7 +7100,7 @@ node n156 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -7213,7 +7213,7 @@ node n157 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -7329,7 +7329,7 @@ node n158 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -7452,7 +7452,7 @@ node n159 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -7584,7 +7584,7 @@ node n160 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -7708,7 +7708,7 @@ node n161 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -7821,7 +7821,7 @@ node n162 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -7944,7 +7944,7 @@ node n163 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -8074,7 +8074,7 @@ node n164 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -8193,7 +8193,7 @@ node n165 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -8313,7 +8313,7 @@ node n166 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -8451,7 +8451,7 @@ node n167 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -8580,7 +8580,7 @@ node n168 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
@@ -8706,7 +8706,7 @@ node n169 {
 	custom-command UserDefined
 	config {
 	cmdup=('/usr/sbin/keepalived -P -f /usr/share/greybox/etc/backbone_keepalived.conf',)
-	cmddown=('/usr/sbin/killall keepalived',)
+	cmddown=('/usr/bin/killall keepalived',)
 	}
     }
     custom-config {
