@@ -12,6 +12,7 @@ Requires: core-daemon >= 5.0, core-gui
 Requires: frr
 Requires: topgen >= 0.0.95
 Requires: keepalived, dhcp-server
+Requires: iodine
 BuildRequires: systemd-units
 BuildArch: noarch
 
