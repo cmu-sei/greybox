@@ -187,3 +187,7 @@ off-limits to NetworkManager by adding the line "NM_CONTROLLED=no" to its
 '/etc/sysconfig/network-scripts/ifcfg-ethX' config file. Similar steps
 exist (and should be followed) on distributions which are not following
 RedHat/Fedora conventions.
+
+<hr>
+For ***best effort*** help, post your question in the `#greybox` (freenode)
+IRC channel.
