@@ -102,6 +102,7 @@ node n101 {
 	!
 	router bgp 19180
 	 bgp router-id 139.82.0.1
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 139.82.0.2 remote-as 19180
@@ -201,6 +202,7 @@ node n102 {
 	!
 	router bgp 19180
 	 bgp router-id 139.82.0.6
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 139.82.0.5 remote-as 19180
@@ -317,6 +319,7 @@ node n103 {
 	!
 	router bgp 19180
 	 bgp router-id 139.82.0.2
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 139.82.0.1 remote-as 19180
@@ -420,6 +423,7 @@ node n104 {
 	!
 	router bgp 19180
 	 bgp router-id 139.82.0.10
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 139.82.0.9 remote-as 19180
@@ -521,6 +525,7 @@ node n105 {
 	!
 	router bgp 2856
 	 bgp router-id 77.104.0.2
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 77.104.0.1 remote-as 2856
@@ -628,6 +633,7 @@ node n106 {
 	!
 	router bgp 2856
 	 bgp router-id 77.104.0.14
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 77.104.0.13 remote-as 2856
@@ -751,6 +757,7 @@ node n107 {
 	!
 	router bgp 2856
 	 bgp router-id 77.104.0.1
+	 no bgp ebgp-requires-policy
 	 bgp cluster-id 77.104.0.0
 	 redistribute connected
 	 redistribute static
@@ -885,6 +892,7 @@ node n108 {
 	!
 	router bgp 2856
 	 bgp router-id 77.104.0.10
+	 no bgp ebgp-requires-policy
 	 bgp cluster-id 77.104.0.0
 	 redistribute connected
 	 redistribute static
@@ -1008,6 +1016,7 @@ node n109 {
 	!
 	router bgp 2856
 	 bgp router-id 77.104.0.6
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 77.104.0.5 remote-as 2856
@@ -1130,6 +1139,7 @@ node n110 {
 	!
 	router bgp 1456
 	 bgp router-id 50.128.0.14
+	 no bgp ebgp-requires-policy
 	 bgp cluster-id 50.128.0.0
 	 redistribute connected
 	 redistribute static
@@ -1272,6 +1282,7 @@ node n111 {
 	!
 	router bgp 1456
 	 bgp router-id 50.128.0.18
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 50.128.0.17 remote-as 1456
@@ -1406,6 +1417,7 @@ node n112 {
 	!
 	router bgp 1456
 	 bgp router-id 50.128.0.10
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 50.128.0.9 remote-as 1456
@@ -1540,6 +1552,7 @@ node n113 {
 	!
 	router bgp 1456
 	 bgp router-id 50.128.0.2
+	 no bgp ebgp-requires-policy
 	 bgp cluster-id 50.128.0.0
 	 redistribute connected
 	 redistribute static
@@ -1675,6 +1688,7 @@ node n114 {
 	!
 	router bgp 1456
 	 bgp router-id 50.128.0.6
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 50.128.0.5 remote-as 1456
@@ -1801,6 +1815,7 @@ node n115 {
 	!
 	router bgp 1456
 	 bgp router-id 50.128.0.1
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 50.128.0.2 remote-as 1456
@@ -1918,6 +1933,7 @@ node n116 {
 	!
 	router bgp 3472
 	 bgp router-id 156.0.0.1
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 156.0.0.2 remote-as 3472
@@ -2023,6 +2039,7 @@ node n117 {
 	!
 	router bgp 3472
 	 bgp router-id 156.0.0.2
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 156.0.0.1 remote-as 3472
@@ -2127,6 +2144,7 @@ node n118 {
 	!
 	router bgp 3472
 	 bgp router-id 156.0.0.6
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 156.0.0.5 remote-as 3472
@@ -2232,6 +2250,7 @@ node n119 {
 	!
 	router bgp 3472
 	 bgp router-id 156.0.0.10
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 156.0.0.9 remote-as 3472
@@ -2337,6 +2356,7 @@ node n120 {
 	!
 	router bgp 3472
 	 bgp router-id 156.0.0.18
+	 no bgp ebgp-requires-policy
 	 bgp cluster-id 156.0.0.0
 	 redistribute connected
 	 redistribute static
@@ -2452,6 +2472,7 @@ node n121 {
 	!
 	router bgp 3473
 	 bgp router-id 24.111.0.66
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 24.111.0.65 remote-as 3356
@@ -2520,6 +2541,7 @@ node n122 {
 	!
 	router bgp 3474
 	 bgp router-id 50.128.0.70
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 50.128.0.69 remote-as 1456
@@ -2588,6 +2610,7 @@ node n123 {
 	!
 	router bgp 3475
 	 bgp router-id 49.2.0.38
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 49.2.0.37 remote-as 7473
@@ -2664,6 +2687,7 @@ node n124 {
 	!
 	router bgp 3476
 	 bgp router-id 77.104.0.50
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 77.104.0.49 remote-as 2856
@@ -2771,6 +2795,7 @@ node n125 {
 	!
 	router bgp 3356
 	 bgp router-id 24.111.0.14
+	 no bgp ebgp-requires-policy
 	 bgp cluster-id 24.111.0.0
 	 redistribute connected
 	 redistribute static
@@ -2904,6 +2929,7 @@ node n126 {
 	!
 	router bgp 3356
 	 bgp router-id 24.111.0.18
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 24.111.0.17 remote-as 3356
@@ -3030,6 +3056,7 @@ node n127 {
 	!
 	router bgp 3356
 	 bgp router-id 24.111.0.10
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 24.111.0.9 remote-as 3356
@@ -3162,6 +3189,7 @@ node n128 {
 	!
 	router bgp 3356
 	 bgp router-id 24.111.0.2
+	 no bgp ebgp-requires-policy
 	 bgp cluster-id 24.111.0.0
 	 redistribute connected
 	 redistribute static
@@ -3302,6 +3330,7 @@ node n129 {
 	!
 	router bgp 3356
 	 bgp router-id 24.111.0.6
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 24.111.0.5 remote-as 3356
@@ -3421,6 +3450,7 @@ node n130 {
 	!
 	router bgp 3356
 	 bgp router-id 24.111.0.1
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 24.111.0.2 remote-as 3356
@@ -3552,6 +3582,7 @@ node n131 {
 	!
 	router bgp 10026
 	 bgp router-id 114.144.0.2
+	 no bgp ebgp-requires-policy
 	 bgp cluster-id 114.144.0.0
 	 redistribute connected
 	 redistribute static
@@ -3685,6 +3716,7 @@ node n132 {
 	!
 	router bgp 10026
 	 bgp router-id 114.144.0.14
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 114.144.0.13 remote-as 10026
@@ -3786,6 +3818,7 @@ node n133 {
 	!
 	router bgp 10026
 	 bgp router-id 114.144.0.1
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 114.144.0.2 remote-as 10026
@@ -3891,6 +3924,7 @@ node n134 {
 	!
 	router bgp 10026
 	 bgp router-id 114.144.0.18
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 114.144.0.17 remote-as 10026
@@ -3993,6 +4027,7 @@ node n135 {
 	!
 	router bgp 10026
 	 bgp router-id 114.144.0.6
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 114.144.0.5 remote-as 10026
@@ -4106,6 +4141,7 @@ node n136 {
 	!
 	router bgp 10026
 	 bgp router-id 114.144.0.10
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 114.144.0.9 remote-as 10026
@@ -4224,6 +4260,7 @@ node n137 {
 	!
 	router bgp 7473
 	 bgp router-id 49.2.0.2
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 49.2.0.1 remote-as 7473
@@ -4328,6 +4365,7 @@ node n138 {
 	!
 	router bgp 7473
 	 bgp router-id 49.2.0.10
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 49.2.0.9 remote-as 7473
@@ -4438,6 +4476,7 @@ node n139 {
 	!
 	router bgp 7473
 	 bgp router-id 49.2.0.1
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 49.2.0.2 remote-as 7473
@@ -4558,6 +4597,7 @@ node n140 {
 	!
 	router bgp 7473
 	 bgp router-id 49.2.0.6
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 49.2.0.5 remote-as 7473
@@ -4662,6 +4702,7 @@ node n141 {
 	!
 	router bgp 23994
 	 bgp router-id 94.60.0.2
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 94.60.0.1 remote-as 23994
@@ -4777,6 +4818,7 @@ node n142 {
 	!
 	router bgp 23994
 	 bgp router-id 94.60.0.14
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 94.60.0.13 remote-as 23994
@@ -4901,6 +4943,7 @@ node n143 {
 	!
 	router bgp 23994
 	 bgp router-id 94.60.0.1
+	 no bgp ebgp-requires-policy
 	 bgp cluster-id 94.60.0.0
 	 redistribute connected
 	 redistribute static
@@ -5025,6 +5068,7 @@ node n144 {
 	!
 	router bgp 23994
 	 bgp router-id 94.60.0.10
+	 no bgp ebgp-requires-policy
 	 bgp cluster-id 94.60.0.0
 	 redistribute connected
 	 redistribute static
@@ -5140,6 +5184,7 @@ node n145 {
 	!
 	router bgp 23994
 	 bgp router-id 94.60.0.6
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 94.60.0.5 remote-as 23994
@@ -5261,6 +5306,7 @@ node n146 {
 	!
 	router bgp 6453
 	 bgp router-id 36.96.0.2
+	 no bgp ebgp-requires-policy
 	 bgp cluster-id 36.96.0.0
 	 redistribute connected
 	 redistribute static
@@ -5395,6 +5441,7 @@ node n147 {
 	!
 	router bgp 6453
 	 bgp router-id 36.96.0.14
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 36.96.0.13 remote-as 6453
@@ -5489,6 +5536,7 @@ node n148 {
 	!
 	router bgp 6453
 	 bgp router-id 36.96.0.1
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 36.96.0.2 remote-as 6453
@@ -5585,6 +5633,7 @@ node n149 {
 	!
 	router bgp 6453
 	 bgp router-id 36.96.0.18
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 36.96.0.17 remote-as 6453
@@ -5686,6 +5735,7 @@ node n150 {
 	!
 	router bgp 6453
 	 bgp router-id 36.96.0.6
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 36.96.0.5 remote-as 6453
@@ -5807,6 +5857,7 @@ node n151 {
 	!
 	router bgp 6453
 	 bgp router-id 36.96.0.10
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 36.96.0.9 remote-as 6453
@@ -5926,6 +5977,7 @@ node n152 {
 	!
 	router bgp 8452
 	 bgp router-id 95.212.0.2
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 95.212.0.1 remote-as 8452
@@ -6041,6 +6093,7 @@ node n153 {
 	!
 	router bgp 8452
 	 bgp router-id 95.212.0.1
+	 no bgp ebgp-requires-policy
 	 bgp cluster-id 95.212.0.0
 	 redistribute connected
 	 redistribute static
@@ -6151,6 +6204,7 @@ node n154 {
 	!
 	router bgp 8452
 	 bgp router-id 95.212.0.6
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 95.212.0.5 remote-as 8452
@@ -6259,6 +6313,7 @@ node n155 {
 	!
 	router bgp 8452
 	 bgp router-id 95.212.0.10
+	 no bgp ebgp-requires-policy
 	 bgp cluster-id 95.212.0.0
 	 redistribute connected
 	 redistribute static
@@ -6363,6 +6418,7 @@ node n156 {
 	!
 	router bgp 8452
 	 bgp router-id 95.212.0.14
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 95.212.0.13 remote-as 8452
@@ -6462,6 +6518,7 @@ node n157 {
 	!
 	router bgp 1221
 	 bgp router-id 110.20.0.2
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 110.20.0.1 remote-as 1221
@@ -6564,6 +6621,7 @@ node n158 {
 	!
 	router bgp 1221
 	 bgp router-id 110.20.0.10
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 110.20.0.9 remote-as 1221
@@ -6681,6 +6739,7 @@ node n159 {
 	!
 	router bgp 1221
 	 bgp router-id 110.20.0.1
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 110.20.0.2 remote-as 1221
@@ -6793,6 +6852,7 @@ node n160 {
 	!
 	router bgp 1221
 	 bgp router-id 110.20.0.6
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 110.20.0.5 remote-as 1221
@@ -6898,6 +6958,7 @@ node n161 {
 	!
 	router bgp 40260
 	 bgp router-id 143.54.0.1
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 143.54.0.2 remote-as 40260
@@ -6997,6 +7058,7 @@ node n162 {
 	!
 	router bgp 40260
 	 bgp router-id 143.54.0.6
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 143.54.0.5 remote-as 40260
@@ -7114,6 +7176,7 @@ node n163 {
 	!
 	router bgp 40260
 	 bgp router-id 143.54.0.2
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 143.54.0.1 remote-as 40260
@@ -7224,6 +7287,7 @@ node n164 {
 	!
 	router bgp 40260
 	 bgp router-id 143.54.0.10
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 143.54.0.9 remote-as 40260
@@ -7324,6 +7388,7 @@ node n165 {
 	!
 	router bgp 36908
 	 bgp router-id 155.11.0.2
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 155.11.0.1 remote-as 36908
@@ -7438,6 +7503,7 @@ node n166 {
 	!
 	router bgp 36908
 	 bgp router-id 155.11.0.1
+	 no bgp ebgp-requires-policy
 	 bgp cluster-id 155.11.0.0
 	 redistribute connected
 	 redistribute static
@@ -7556,6 +7622,7 @@ node n167 {
 	!
 	router bgp 36908
 	 bgp router-id 155.11.0.6
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 155.11.0.5 remote-as 36908
@@ -7674,6 +7741,7 @@ node n168 {
 	!
 	router bgp 36908
 	 bgp router-id 155.11.0.10
+	 no bgp ebgp-requires-policy
 	 bgp cluster-id 155.11.0.0
 	 redistribute connected
 	 redistribute static
@@ -7772,6 +7840,7 @@ node n169 {
 	!
 	router bgp 36908
 	 bgp router-id 155.11.0.14
+	 no bgp ebgp-requires-policy
 	 redistribute connected
 	 redistribute static
 	 neighbor 155.11.0.13 remote-as 36908
