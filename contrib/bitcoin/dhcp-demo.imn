@@ -9930,7 +9930,7 @@ node n301 {
 
 	start() {
 	  for i in $(cat /var/lib/topgen/etc/hosts.* | awk '{print $1}' | sort -u); do
-	    /usr/sbin/ip addr add $i/32 scope global dev lo
+	    /usr/sbin/ip addr add $i scope global dev lo
 	  done
 	  [ -s /var/lib/topgen/etc/named.conf ] && \
 	    /usr/sbin/named -u named -c /var/lib/topgen/etc/named.conf
