@@ -11,7 +11,7 @@ GreyBox depends on the following software packages:
 
         TopGen
         CORE (see https://github.com/coreemu/core)
-        quagga
+        FRR (previously Quagga)
         keepalived
         dhcp (server)
 
@@ -33,7 +33,7 @@ the documentation for both TopGen (included with the package), and for
 CORE (at http://downloads.pf.itd.nrl.navy.mil/docs/core/core-html/).
 
 ### Networked Containers ###
-An LXC container is wrapped around each of several instances of Quagga's
+An LXC container is wrapped around each of several instances of FRR's
 bgpd, to allow running them side by side as processes on the same host,
 rather than requiring a dedicated VM, complete with its own running guest
 kernel, to be wrapped around each individual bgpd instance.
@@ -152,7 +152,7 @@ Once the simulation is fully underway, right-click on any of the container
 icons to select "Shell Window -> bash" to get a terminal window from the
 inside perspective of that specific container. On containers representing
 BGP routers, one may select "Shell Window -> vtysh" for direct access to
-the Cisco-like user interface exposed by the Quagga software.
+the Cisco-like user interface exposed by the FRR shell.
 
 ### Loading a GreyBox Map at Boot ###
 The GreyBox package also ships with a systemd service which, when enabled:
