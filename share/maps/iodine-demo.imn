@@ -9976,6 +9976,7 @@ node n412 {
 	    listen-on port 53 { any; };
 	    allow-query { any; };
 	    recursion yes;
+	    dnssec-validation no;
 	    querylog yes;
 	    directory "/var/named";
 	    dump-file "/var/named/data/cache_dump.db";
