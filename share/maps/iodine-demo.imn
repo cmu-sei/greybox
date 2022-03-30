@@ -9977,6 +9977,7 @@ node n412 {
 	    allow-query { any; };
 	    recursion yes;
 	    dnssec-validation no;
+	    qname-minimization strict;
 	    querylog yes;
 	    directory "/var/named";
 	    dump-file "/var/named/data/cache_dump.db";
