@@ -10120,8 +10120,9 @@ node n501 {
 	    sleep 5
 	  done
 	  # ... before starting up the onion router daemon:
+	  TDA_ADDR=$(getent ahostsv4 $(hostname) | head -1 | cut -d' ' -f1)
 	  /bin/tor -f $CFG_FILE --orport 5000 --ExitRelay 1 \
-	           --nickname $(hostname -s)
+	           --address $TDA_ADDR --nickname $(hostname -s)
 	fi
 
 	}
@@ -10186,8 +10187,9 @@ node n502 {
 	    sleep 5
 	  done
 	  # ... before starting up the onion router daemon:
+	  TDA_ADDR=$(getent ahostsv4 $(hostname) | head -1 | cut -d' ' -f1)
 	  /bin/tor -f $CFG_FILE --orport 5000 --ExitRelay 1 \
-	           --nickname $(hostname -s)
+	           --address $TDA_ADDR --nickname $(hostname -s)
 	fi
 
 	}
@@ -10252,8 +10254,9 @@ node n503 {
 	    sleep 5
 	  done
 	  # ... before starting up the onion router daemon:
+	  TDA_ADDR=$(getent ahostsv4 $(hostname) | head -1 | cut -d' ' -f1)
 	  /bin/tor -f $CFG_FILE --orport 5000 --ExitRelay 1 \
-	           --nickname $(hostname -s)
+	           --address $TDA_ADDR --nickname $(hostname -s)
 	fi
 
 	}
@@ -10318,8 +10321,9 @@ node n504 {
 	    sleep 5
 	  done
 	  # ... before starting up the onion router daemon:
+	  TDA_ADDR=$(getent ahostsv4 $(hostname) | head -1 | cut -d' ' -f1)
 	  /bin/tor -f $CFG_FILE --orport 5000 --ExitRelay 1 \
-	           --nickname $(hostname -s)
+	           --address $TDA_ADDR --nickname $(hostname -s)
 	fi
 
 	}
