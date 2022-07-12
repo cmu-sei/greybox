@@ -9897,7 +9897,7 @@ node n410 {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
 	config {
-	dirs=('/var/lib/tor', '/run/tor', '/etc/bitcoin', '/var/lib/bitcoin',)
+	dirs=('/var/lib/tor', '/run/tor', '/var/lib/bitcoin',)
 	cmdup=('/bin/true',)
 	cmddown=('/bin/true',)
 	}
@@ -10249,21 +10249,10 @@ node n601 {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
 	config {
-	dirs=('/etc/bitcoin', '/var/lib/bitcoin',)
-	files=('/etc/bitcoin/bitcoin.conf', 'bitcoind.sh',)
-	cmdup=('sh bitcoind.sh',)
+	dirs=('/var/lib/bitcoin',)
+	files=('bitcoind.sh',)
+	cmdup=('sh bitcoind.sh 0',)
 	cmddown=('/bin/killall bitcoind',)
-	}
-    }
-    custom-config {
-	custom-config-id service:UserDefined:/etc/bitcoin/bitcoin.conf
-	custom-command /etc/bitcoin/bitcoin.conf
-	config {
-	server=1
-	rpcuser=root
-	rpcpassword=foobar
-	gen=1
-
 	}
     }
     custom-config {
@@ -10271,11 +10260,41 @@ node n601 {
 	custom-command bitcoind.sh
 	config {
 	#!/bin/sh
-	# start bitcoind, wait for it to daemonize, then limit its cpu usage:
-	# FIXME: first, ensure btc-seed.topgen.info (and dns lookup) works!
-	/sbin/bitcoind -daemon -regtest -maxtipage=1231006505 -conf=/etc/bitcoin/bitcoin.conf -datadir=/var/lib/bitcoin -pid=/run/bitcoin.pid
+
+	# node & next-node ID:
+	let BTCNODEID=$1
+	let BTCNEXTID=(BTCNODEID+1)%3
+
+	# start bitcoind:
+	/sbin/bitcoind -daemon -server -regtest -datadir=/var/lib/bitcoin \
+	    -rpcuser=tar -rpcpassword=tans -fallbackfee=0.0002 \
+	    -pid=/run/bitcoin.pid
+	# wait for daemon:
 	until [ -f /run/bitcoin.pid ]; do sleep 1; done
-	/bin/cpulimit -l 1 -p $(< /run/bitcoin.pid) &
+
+	# BTC nodes:
+	BTCNODES=('btc-1.terra.com' 'btc-2.vodacom.co.za' 'btc-3.pacnet.com')
+
+	# BTC client command:
+	BTCLI='/bin/bitcoin-cli -regtest -rpcuser=tar -rpcpassword=tans'
+
+	# connect to peer(s):
+	BTCPEER=${BTCNODES[$BTCNEXTID]}
+	until ping -q -c1 $BTCPEER; do sleep 1; done
+	$BTCLI addnode $BTCPEER add
+
+	# configure wallet:
+	$BTCLI createwallet mywallet
+
+	# mine:
+	BTCADDR=$($BTCLI getnewaddress)
+	for ((i=0;;i++)); do
+	    sleep 10
+	    if ((i%3==BTCNODEID)); then
+	        $BTCLI generatetoaddress 1 $BTCADDR
+	    fi
+	done &
+	echo $BTCADDR > my_btc_addr.txt
 	}
     }
     custom-image /usr/share/greybox/clipart/btc.gif
@@ -10315,21 +10334,10 @@ node n602 {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
 	config {
-	dirs=('/etc/bitcoin', '/var/lib/bitcoin',)
-	files=('/etc/bitcoin/bitcoin.conf', 'bitcoind.sh',)
-	cmdup=('sh bitcoind.sh',)
+	dirs=('/var/lib/bitcoin',)
+	files=('bitcoind.sh',)
+	cmdup=('sh bitcoind.sh 1',)
 	cmddown=('/bin/killall bitcoind',)
-	}
-    }
-    custom-config {
-	custom-config-id service:UserDefined:/etc/bitcoin/bitcoin.conf
-	custom-command /etc/bitcoin/bitcoin.conf
-	config {
-	server=1
-	rpcuser=root
-	rpcpassword=foobar
-	gen=1
-
 	}
     }
     custom-config {
@@ -10337,11 +10345,41 @@ node n602 {
 	custom-command bitcoind.sh
 	config {
 	#!/bin/sh
-	# start bitcoind, wait for it to daemonize, then limit its cpu usage:
-	# FIXME: first, ensure btc-seed.topgen.info (and dns lookup) works!
-	/sbin/bitcoind -daemon -regtest -maxtipage=1231006505 -conf=/etc/bitcoin/bitcoin.conf -datadir=/var/lib/bitcoin -pid=/run/bitcoin.pid
+
+	# node & next-node ID:
+	let BTCNODEID=$1
+	let BTCNEXTID=(BTCNODEID+1)%3
+
+	# start bitcoind:
+	/sbin/bitcoind -daemon -server -regtest -datadir=/var/lib/bitcoin \
+	    -rpcuser=tar -rpcpassword=tans -fallbackfee=0.0002 \
+	    -pid=/run/bitcoin.pid
+	# wait for daemon:
 	until [ -f /run/bitcoin.pid ]; do sleep 1; done
-	/bin/cpulimit -l 1 -p $(< /run/bitcoin.pid) &
+
+	# BTC nodes:
+	BTCNODES=('btc-1.terra.com' 'btc-2.vodacom.co.za' 'btc-3.pacnet.com')
+
+	# BTC client command:
+	BTCLI='/bin/bitcoin-cli -regtest -rpcuser=tar -rpcpassword=tans'
+
+	# connect to peer(s):
+	BTCPEER=${BTCNODES[$BTCNEXTID]}
+	until ping -q -c1 $BTCPEER; do sleep 1; done
+	$BTCLI addnode $BTCPEER add
+
+	# configure wallet:
+	$BTCLI createwallet mywallet
+
+	# mine:
+	BTCADDR=$($BTCLI getnewaddress)
+	for ((i=0;;i++)); do
+	    sleep 10
+	    if ((i%3==BTCNODEID)); then
+	        $BTCLI generatetoaddress 1 $BTCADDR
+	    fi
+	done &
+	echo $BTCADDR > my_btc_addr.txt
 	}
     }
     custom-image /usr/share/greybox/clipart/btc.gif
@@ -10381,21 +10419,10 @@ node n603 {
 	custom-config-id service:UserDefined
 	custom-command UserDefined
 	config {
-	dirs=('/etc/bitcoin', '/var/lib/bitcoin',)
-	files=('/etc/bitcoin/bitcoin.conf', 'bitcoind.sh',)
-	cmdup=('sh bitcoind.sh',)
+	dirs=('/var/lib/bitcoin',)
+	files=('bitcoind.sh',)
+	cmdup=('sh bitcoind.sh 2',)
 	cmddown=('/bin/killall bitcoind',)
-	}
-    }
-    custom-config {
-	custom-config-id service:UserDefined:/etc/bitcoin/bitcoin.conf
-	custom-command /etc/bitcoin/bitcoin.conf
-	config {
-	server=1
-	rpcuser=root
-	rpcpassword=foobar
-	gen=1
-
 	}
     }
     custom-config {
@@ -10403,11 +10430,41 @@ node n603 {
 	custom-command bitcoind.sh
 	config {
 	#!/bin/sh
-	# start bitcoind, wait for it to daemonize, then limit its cpu usage:
-	# FIXME: first, ensure btc-seed.topgen.info (and dns lookup) works!
-	/sbin/bitcoind -daemon -regtest -maxtipage=1231006505 -conf=/etc/bitcoin/bitcoin.conf -datadir=/var/lib/bitcoin -pid=/run/bitcoin.pid
+
+	# node & next-node ID:
+	let BTCNODEID=$1
+	let BTCNEXTID=(BTCNODEID+1)%3
+
+	# start bitcoind:
+	/sbin/bitcoind -daemon -server -regtest -datadir=/var/lib/bitcoin \
+	    -rpcuser=tar -rpcpassword=tans -fallbackfee=0.0002 \
+	    -pid=/run/bitcoin.pid
+	# wait for daemon:
 	until [ -f /run/bitcoin.pid ]; do sleep 1; done
-	/bin/cpulimit -l 1 -p $(< /run/bitcoin.pid) &
+
+	# BTC nodes:
+	BTCNODES=('btc-1.terra.com' 'btc-2.vodacom.co.za' 'btc-3.pacnet.com')
+
+	# BTC client command:
+	BTCLI='/bin/bitcoin-cli -regtest -rpcuser=tar -rpcpassword=tans'
+
+	# connect to peer(s):
+	BTCPEER=${BTCNODES[$BTCNEXTID]}
+	until ping -q -c1 $BTCPEER; do sleep 1; done
+	$BTCLI addnode $BTCPEER add
+
+	# configure wallet:
+	$BTCLI createwallet mywallet
+
+	# mine:
+	BTCADDR=$($BTCLI getnewaddress)
+	for ((i=0;;i++)); do
+	    sleep 10
+	    if ((i%3==BTCNODEID)); then
+	        $BTCLI generatetoaddress 1 $BTCADDR
+	    fi
+	done &
+	echo $BTCADDR > my_btc_addr.txt
 	}
     }
     custom-image /usr/share/greybox/clipart/btc.gif

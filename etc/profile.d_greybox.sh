@@ -8,6 +8,6 @@
   alias watch='watch '
 
   # bitcoin client's default mode and config file:
-  alias btcli='bitcoin-cli -regtest -conf=/etc/bitcoin/bitcoin.conf'
+  alias btcli='bitcoin-cli -regtest -rpcuser=tar -rpcpassword=tans'
 
 }
