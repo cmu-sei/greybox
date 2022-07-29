@@ -27,7 +27,7 @@ built-in dependency resolution.
 ## Design ##
 GreyBox relies heavily on TopGen (an application service simulator), and
 on the CORE container-based network simulator. In essence GreyBox provides
-an elaborate network topology configuratin to be simulated by CORE, with
+an elaborate network topology configuration to be simulated by CORE, with
 application services to be provide by TopGen. You are encouraged to read
 the documentation for both TopGen (included with the package), and for
 CORE (at http://downloads.pf.itd.nrl.navy.mil/docs/core/core-html/).
@@ -69,7 +69,7 @@ are configured as secondaries on its loopback interface.
 
 Each BGP router announces a set of static routes to its neighbors, with
 the next-hop value set to TopGen's FTL network address. Each router will
-announce a default route, but also a set of more-specific /8 routes, the
+announce a default route, but also a set of more specific /8 routes, the
 union of which covers all service IPs held by TopGen. The /8 routes
 announced by each BGP router have been carefully selected to approximately
 match their geographic assignment on the real-world Internet.
