@@ -20,8 +20,8 @@ to the appropriate locations on the filesystem. Also, see
 './contrib/greybox.spec' for instructions on how to build a GreyBox RPM
 package.
 
-An example of pre-installed GreyBox and TopGen on a Fedora 38 VM can be
-downloaded from:
+An example of pre-installed GreyBox and TopGen on a Fedora 38 VM
+(user = `admin`, password = `tartans`) can be downloaded from:
 
   - [Virtualbox OVA](http://mirror.ini.cmu.edu/netfor/NetFor38-x86_64.vbx.ova)
   - [Apple/ARM UTM](http://mirror.ini.cmu.edu/netfor/NetFor38-aarch64.utm.tgz)
