@@ -147,7 +147,7 @@ First, ensure that the CORE daemon service is running:
 
 Then, from a terminal window, load a simulation map into the CORE GUI:
 
-        core-gui /usr/share/greybox/maps/backbone.imn
+        core-gui-legacy /usr/share/greybox/maps/backbone.imn
 
 When the GUI is up, press the green "play" button to start the simulation.
 Once the simulation is fully underway, right-click on any of the container
